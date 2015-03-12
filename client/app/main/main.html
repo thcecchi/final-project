@@ -1,0 +1,59 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>The 700 Section</h1>
+    <!-- <p class="lead">The 700 Section</p> -->
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4 left">
+      <h1 class="page-header">Scoreboard</h1>
+      <div class="gamesCtrl" ng-controller="GameCtrl as awesomeGames">
+        <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="game in awesomeGames">
+          <li><a href="#" tooltip="{{game.sport}}">{{game.away_team.full_name}} @ {{game.home_team.full_name}}</a></li>
+          <li><a href="#" tooltip="{{game.sport}}">{{game.away_points_scored}} - {{game.home_points_scored}}</a></li>
+          <li><a href="#" tooltip="{{game.sport}}">{{game.site.name}} {{game.site.city}}</a></li>
+          <li><a href="#" tooltip="{{game.sport}}">{{game.site.city}}</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-lg-4 middle">
+        <h1 class="page-header">Highlights</h1>
+        <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
+          <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
+        </ul>
+      </div>
+
+
+      <div class="row">
+        <div class="col-lg-4 right">
+          <h1 class="page-header">News</h1>
+          <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
+            <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
+          </ul>
+        </div>
+      </div>
+
+  <form class="thing-form">
+    <label>Syncs in realtime across clients</label>
+    <p class="input-group">
+      <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">
+      <span class="input-group-btn">
+        <button type="submit" class="btn btn-primary" ng-click="addThing()">Add New</button>
+      </span>
+    </p>
+  </form>
+</div>
+
+<footer class="footer">
+  <div class="container">
+      <p>Bantr |
+        <a href="https://twitter.com/tylercecchi">@tylercecchi</a> |
+  </div>
+</footer>
