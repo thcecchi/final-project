@@ -9,11 +9,15 @@ angular.module('finalProjectApp')
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
 
-    $scope.addThing = function() {
+    $scope.addThing = function(newThing) {
       if($scope.newThing === '') {
         return;
       }
-      $http.post('/api/things', { name: $scope.newThing });
+      $http.post('/api/things', {
+        name: newThing,
+        game: 'This will be the game',
+        user: 'This will be the username',
+        });
       $scope.newThing = '';
     };
 
