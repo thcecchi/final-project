@@ -130,7 +130,7 @@ exports.index = function(request, response) {
 
         });
       } else {
-        exports.printResults(chunks.join(''));
+        response.json(exports.printResults(chunks.join('')));
       }
     });
   }).on('error', function (err) {
@@ -185,14 +185,12 @@ exports.printResults = function(content) {
   //                                event.home_team.full_name,
   //                                event.event_status));
   //
-  console.log('%s\n\n', date)
+  // console.log('%s\n\n', date)
   // console.log(time)
-  console.log(event.away_team.full_name, event.home_team.full_name)
-  console.log(event.away_points_scored, event.home_points_scored)
+  // console.log(event.away_team.full_name, event.home_team.full_name)
+  // console.log(event.away_points_scored, event.home_points_scored)
 
   });
 
   return events
 }
-
-// exports.index();

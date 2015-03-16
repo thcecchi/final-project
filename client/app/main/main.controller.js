@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('finalProjectApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, Auth) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
@@ -9,17 +9,23 @@ angular.module('finalProjectApp')
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
 
-    $scope.addThing = function(newThing) {
+    // gets the username of logged in user ////////
+    $scope.getCurrentUser = Auth.getCurrentUser
+    // //////////////////////////////////////////
+
+
+    $scope.addThing = function(newThing, evt) {
       if($scope.newThing === '') {
         return;
       }
       $http.post('/api/things', {
         name: newThing,
-        game: 'This will be the game',
-        user: 'This will be the username',
+        game: evt,
+        user: $scope.getCurrentUser().name,
         });
       $scope.newThing = '';
     };
+
 
     $scope.deleteThing = function(thing) {
       $http.delete('/api/things/' + thing._id);

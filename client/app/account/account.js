@@ -16,9 +16,9 @@ angular.module('finalProjectApp')
         controller: 'SettingsCtrl',
         authenticate: true
       });
-      // .when('/scores', {
-      //   templateUrl: 'app/account/settings/scores.html',
-      //   controller: 'ScoresCtrl',
+      // .when('/picks', {
+      //   templateUrl: 'app/account/settings/picks.html',
+      //   controller: 'GamesCtrl',
       //   authenticate: true
       // });
   });

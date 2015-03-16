@@ -14,5 +14,20 @@ angular.module('finalProjectApp')
         socket.syncUpdates('game', $scope.awesomeGames);
       });
 
+    $scope.getSingleEvent = function (evtId) {
+      $http.get('/api/games/').success(function(awesomeGames) {
+        console.log('that')
+        $scope.awesomeGames = awesomeGames;
+
+        awesomeGames.forEach(function (evt) {
+          if (evt.event_id == evtId) {
+            console.log(evt.event_id)
+          }
+        })
+
+      });
+    }
+
+
 
     });

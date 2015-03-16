@@ -12,8 +12,9 @@
     <div class="col-lg-12 left">
       <h1 class="page-header">Scoreboard</h1>
       <div class="gamesCtrl" ng-controller="GameCtrl as awesomeGames">
-        <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="game in awesomeGames">
-          <li>{{game.away_team.full_name}} @ {{game.home_team.full_name}}</li>
+        <div class="PicksCtrl" ng-controller="PickCtrl as picks">
+        <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" rel="{{game.event_id}}" ng-repeat="game in awesomeGames">
+          <li><a ng-click="makePick(game.away_points_scored, game.away_points_scored, game.event_id)">{{game.away_team.abbreviation}}</a> @ <a ng-click="makePick(game.home_points_scored, game.away_points_scored, game.event_id)">{{game.home_team.abbreviation}}</a></li>
           <!-- <li><a href="#" tooltip="{{game.sport}}">{{game.away_points_scored}} - {{game.home_points_scored}}</a></li> -->
           <li>{{game.site.name}} {{game.site.city}}</li>
           <!-- <li><a href="#" tooltip="{{game.sport}}">{{game.site.city}}</a></li> -->
@@ -26,12 +27,12 @@
               <p class="input-group">
                 <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">
                 <span class="input-group-btn">
-                  <button type="submit" class="btn btn-primary" ng-click="addThing(newThing)">Add New</button>
+                  <button type="submit" class="btn btn-primary" rel="{{game.event_id}}" ng-click="addThing(newThing, game.event_id)">Add New</button>
                 </span>
               </p>
 
               <!-- comments -->
-              <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="thing in awesomeThings">
+              <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="thing in awesomeThings | filter : {game: game.event_id} : true">
                 <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
               </ul>
             </form>
