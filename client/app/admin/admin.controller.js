@@ -5,6 +5,7 @@ angular.module('finalProjectApp')
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();
+    console.log($scope.users)
 
     $scope.delete = function(user) {
       User.remove({ id: user._id });

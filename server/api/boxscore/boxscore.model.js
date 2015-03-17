@@ -3,7 +3,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var GameSchema = new Schema({
+var BoxscoreSchema = new Schema({
   event_id: String,
   date: String,
   time: String,
@@ -14,7 +14,4 @@ var GameSchema = new Schema({
   active: Boolean
 });
 
-
-module.exports = mongoose.model('Game', GameSchema);
-
-console.log(module.exports.base.paths)
+module.exports = mongoose.model('Boxscore', BoxscoreSchema);

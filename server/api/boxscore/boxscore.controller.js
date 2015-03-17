@@ -1,53 +1,53 @@
 'use strict';
 
 var _ = require('lodash');
-var Game = require('./game.model');
+var Boxscore = require('./boxscore.model');
 
-// Get list of games
-exports.list = function(req, res) {
-  Game.find(function (err, games) {
+// Get list of boxscores
+exports.index = function(req, res) {
+  Boxscore.find(function (err, boxscores) {
     if(err) { return handleError(res, err); }
-    return res.json(200, games);
+    return res.json(200, boxscores);
   });
 };
 
-// Get a single game
+// Get a single boxscore
 exports.show = function(req, res) {
-  Game.findById(req.params.id, function (err, game) {
+  Boxscore.findById(req.params.id, function (err, boxscore) {
     if(err) { return handleError(res, err); }
-    if(!game) { return res.send(404); }
-    return res.json(game);
+    if(!boxscore) { return res.send(404); }
+    return res.json(boxscore);
   });
 };
 
-// Creates a new game in the DB.
+// Creates a new boxscore in the DB.
 exports.create = function(req, res) {
-  Game.create(req.body, function(err, game) {
+  Boxscore.create(req.body, function(err, boxscore) {
     if(err) { return handleError(res, err); }
-    return res.json(201, game);
+    return res.json(201, boxscore);
   });
 };
 
-// Updates an existing game in the DB.
+// Updates an existing boxscore in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Game.findById(req.params.id, function (err, game) {
+  Boxscore.findById(req.params.id, function (err, boxscore) {
     if (err) { return handleError(res, err); }
-    if(!game) { return res.send(404); }
-    var updated = _.merge(game, req.body);
+    if(!boxscore) { return res.send(404); }
+    var updated = _.merge(boxscore, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.json(200, game);
+      return res.json(200, boxscore);
     });
   });
 };
 
-// Deletes a game from the DB.
+// Deletes a boxscore from the DB.
 exports.destroy = function(req, res) {
-  Game.findById(req.params.id, function (err, game) {
+  Boxscore.findById(req.params.id, function (err, boxscore) {
     if(err) { return handleError(res, err); }
-    if(!game) { return res.send(404); }
-    game.remove(function(err) {
+    if(!boxscore) { return res.send(404); }
+    boxscore.remove(function(err) {
       if(err) { return handleError(res, err); }
       return res.send(204);
     });
@@ -57,6 +57,7 @@ exports.destroy = function(req, res) {
 function handleError(res, err) {
   return res.send(500, err);
 }
+
 
 var https = require('https');
 var fs = require('fs');
@@ -74,15 +75,16 @@ var USER_AGENT = 'MyRobot/1.0 (thcecchi@gmail.com)';
 // Set time zone to use for output
 var TIME_ZONE = 'America/New_York';
 
+
 //////////////////////////////////////////////////////
-// GET EVENT OBJECTS ////////////////////////////////
+// GET BOXSCORE OBJECTS /////////////////////////////
 ////////////////////////////////////////////////////
 
 exports.index = function(request, response) {
   // Set the API method, format, and any parameters
   var host   = 'erikberg.com';
   var sport  = undefined;
-  var method = 'events';
+  var method = 'boxscore';
   var id     = undefined;
   var format = 'json';
   var params = {

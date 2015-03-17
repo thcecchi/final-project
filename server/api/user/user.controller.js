@@ -35,6 +35,27 @@ exports.create = function (req, res, next) {
 };
 
 /**
+ * Update a users picks array
+ */
+exports.addPicks = function(req, res, next) {
+  var userId = req.user._id;
+  // var updatedPicks = $scope.getCurrentUser().picks; //array saved from picks made on pick.controller
+
+  User.findById(userId, function (err, user) {
+      user.picks = req.body.picks;
+      user.save(function(err) {
+        if (err) {
+          return next(err);
+       }
+        else {
+          var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
+          res.status(200).json({ token: token, picks: user.picks })          
+        }
+      })
+  })
+};
+
+/**
  * Get a single user
  */
 exports.show = function (req, res, next) {
