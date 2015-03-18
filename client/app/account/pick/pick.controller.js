@@ -63,7 +63,7 @@ angular.module('finalProjectApp')
 
 
     $scope.checkPicks = function() {
-          if ($scope.awesomeGames[0].event_status == "scheduled") {
+          if ($scope.awesomeGames[0].event_status == "completed") {
             console.log("game completed!")
 
             $scope.getCurrentUser().picks.forEach(function(pks) {
