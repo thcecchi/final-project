@@ -20,23 +20,23 @@ angular.module('finalProjectApp')
 
 
     $scope.addBet = function(opponent, amount) {
-      // if($scope.newBet === '') {
-      //   return;
-      // }
+      if($scope.amount === '') {
+        return;
+      }
       console.log(opponent)
       console.log(amount)
-      console.log(moment())
+      console.log(moment('MM-DD-YYYY'))
       console.log($scope.getCurrentUser().name)
       console.log($scope.getCurrentUser().picks)
 
       $http.post('/api/bets', {
-        date: moment(YYYYMMDD),
+        date: moment('MM-DD-YYYY'),
         user1: $scope.getCurrentUser().name,
         user1picks: $scope.getCurrentUser().picks,
         user2: opponent,
         wager: amount
         });
-      // $scope.newBet = '';
+      $scope.amount = '';
     };
 
 

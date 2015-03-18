@@ -14,16 +14,21 @@
       <h1 class="page-header">Users</h1>
       <input type="text" placeholder="filter users" ng-model="filterUsers"></input>
 
-          <div class="list-group-item" ng-repeat="user in users | filter: filterUsers">
+          <!-- <div class="list-group-item" ng-repeat="user in users | filter: filterUsers"> -->
 
-        <ul>
-          <input class="col-lg-1" type="checkbox" ng-model="selected"><h5 ng-selected="selected">{{user.name}}</h5>
-        </ul>
+        <!-- <ul>
+          <li ng-model="selected">{{user.name}}</li>
+        </ul> -->
+
+        <p>selected item is : {{selectedItem}}</p>
+      <select ng-model="selectedItem">
+        <option ng-repeat="user in users" value="{{user.name}}">{{user.name}}</option>
+      </select>
 
       </div>
 
       <input type="text" placeholder="bet amount" ng-model="betAmount"></input>
-      <button ng-click='addBet(selected, betAmount)'>Send Bet</button>
+      <button ng-click='addBet(selectedItem, betAmount)'>Send Bet</button>
     </div>
 
 </div>

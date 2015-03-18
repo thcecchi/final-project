@@ -96,6 +96,7 @@ angular.module('finalProjectApp')
             }
           })
         }
+        // $scope.getCurrentUser().picks = []
     }
 
     $scope.submitPicks = function(newPicks, id) {
