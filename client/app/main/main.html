@@ -16,8 +16,8 @@
 
           <button name="button" ng-click="checkPicks()">Check Picks</button>
 
-        <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" rel="{{game.event_id}}" ng-repeat="game in awesomeGames">
-          <li><a ng-click="makePick(game.away_team.abbreviation, game.event_id)">{{game.away_team.abbreviation}}</a> @ <a ng-click="makePick(game.home_team.abbreviation, game.event_id)">{{game.home_team.abbreviation}}</a></li>
+        <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" rel="{{game.event_id}}" ng-repeat="game in awesomeGames">
+          <li><a class='col-md-6 col-lg-6 col-sm-6' ng-click="makePick(game.away_team.abbreviation, game.event_id)">{{game.away_team.abbreviation}}</a> <a ng-click="makePick(game.home_team.abbreviation, game.event_id)">{{game.home_team.abbreviation}}</a></li>
           <!-- <li><a href="#" tooltip="{{game.sport}}">{{game.away_points_scored}} - {{game.home_points_scored}}</a></li> -->
           <li>{{game.site.name}} {{game.site.city}}</li>
 
@@ -34,7 +34,7 @@
               </p>
 
               <!-- comments -->
-              <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="thing in awesomeThings | filter : {game: game.event_id} : true">
+              <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="thing in awesomeThings | filter : {game: game.event_id} : true">
                 <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
               </ul>
             </form>
@@ -43,7 +43,7 @@
         </ul>
       </div>
     </div>
-
+    <a href="#/userlist"><button class-"col-md-12 col-lg-12 col-sm-12">Find Opponent</button></a>
 </div>
 
 <footer class="footer">

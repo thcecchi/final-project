@@ -20,6 +20,7 @@ exports.index = function(req, res) {
   });
 };
 
+
 /**
  * Creates a new user
  */
@@ -49,7 +50,7 @@ exports.addPicks = function(req, res, next) {
        }
         else {
           var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
-          res.status(200).json({ token: token, picks: user.picks })          
+          res.status(200).json({ token: token, picks: user.picks })
         }
       })
   })

@@ -4,10 +4,12 @@ angular.module('finalProjectApp')
   .controller('PickCtrl', function ($scope, $http, socket) {
     $scope.message = 'Hello';
 
+    // check picks at 3am daily
+
     var now = new Date();
     var millisTill3 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 3, 0, 0, 0) - now;
     if (millisTill3 < 0) {
-        millisTill3 += 86400000; // it's after 3am, try 3am tomorrow.
+        millisTill3 += 86400000; // it's after 3am, check again at 3am tomorrow.
     }
     setTimeout($scope.checkPicks, millisTill3);
 
@@ -68,6 +70,7 @@ angular.module('finalProjectApp')
 
             $scope.getCurrentUser().picks.forEach(function(pks) {
               console.log(pks)
+              if (index < $scope.getCurrentUser().picks.length) {
 
               $scope.awesomeGames.forEach(function(games) {
                 // changing the values of the home and away score for test purposes
@@ -90,8 +93,9 @@ angular.module('finalProjectApp')
                   console.log("wtf!?!?")
                 }
               })
-            })
-          }
+            }
+          })
+        }
     }
 
     $scope.submitPicks = function(newPicks, id) {

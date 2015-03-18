@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Controller: GamesRouteCtrl', function () {
+describe('Controller: UserlistCtrl', function () {
 
   // load the controller's module
   beforeEach(module('finalProjectApp'));
 
-  var GamesRouteCtrl, scope;
+  var UserlistCtrl, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    GamesRouteCtrl = $controller('GamesRouteCtrl', {
+    UserlistCtrl = $controller('UserlistCtrl', {
       $scope: scope
     });
   }));

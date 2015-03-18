@@ -1,0 +1,36 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<header class="hero-unit" id="banner">
+  <div class="container">
+    <h1>The 700 Section</h1>
+    <h1>Who do you want to bet?</h1>
+    <!-- <p class="lead">The 700 Section</p> -->
+  </div>
+</header>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12 left">
+      <h1 class="page-header">Users</h1>
+      <input type="text" placeholder="filter users" ng-model="filterUsers"></input>
+
+          <div class="list-group-item" ng-repeat="user in users | filter: filterUsers">
+
+        <ul>
+          <input class="col-lg-1" type="checkbox" ng-model="selected"><h5 ng-selected="selected">{{user.name}}</h5>
+        </ul>
+
+      </div>
+
+      <input type="text" placeholder="bet amount" ng-model="betAmount"></input>
+      <button ng-click='addBet(selected, betAmount)'>Send Bet</button>
+    </div>
+
+</div>
+
+<footer class="footer">
+  <div class="container">
+      <p>Bantr |
+        <a href="https://twitter.com/tylercecchi">@tylercecchi</a> |
+  </div>
+</footer>

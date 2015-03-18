@@ -3,8 +3,8 @@
 angular.module('finalProjectApp')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/gamesRoute', {
-        templateUrl: 'app/gamesRoute/gamesRoute.html',
-        controller: 'GamesRouteCtrl'
+      .when('/userlist', {
+        templateUrl: 'app/userlist/userlist.html',
+        controller: 'BetCtrl'
       });
   });

@@ -87,7 +87,7 @@ exports.index = function(request, response) {
   var format = 'json';
   var params = {
     'sport': 'nba',
-    'date': moment()
+    'date': moment('YYYYMMDD')
   };
 
   var url;
@@ -190,7 +190,7 @@ exports.printResults = function(content) {
   //                                event.event_status));
   //
   // console.log('%s\n\n', date)
-  // console.log(time)
+  // console.log(moment())
   // console.log(event.away_team.full_name, event.home_team.full_name)
   // console.log(event.away_points_scored, event.home_points_scored)
 
