@@ -4,6 +4,14 @@ angular.module('finalProjectApp')
   .controller('PickCtrl', function ($scope, $http, socket) {
     $scope.message = 'Hello';
 
+    var now = new Date();
+    var millisTill3 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 3, 0, 0, 0) - now;
+    if (millisTill3 < 0) {
+        millisTill3 += 86400000; // it's after 3am, try 3am tomorrow.
+    }
+    setTimeout($scope.checkPicks, millisTill3);
+
+
     $scope.makePick = function(winner, game) {
       console.log(game)
 
@@ -24,39 +32,37 @@ angular.module('finalProjectApp')
 
     }
     // object watch polyfill ///////////////////////////////
-    if (!Object.prototype.watch) {
-	     Object.defineProperty(Object.prototype, "watch", {
-		       enumerable: false
-      		, configurable: true
-      		, writable: false
-      		, value: function (prop, handler) {
-			 var oldval = this[prop]
-    			, newval = oldval
-    			, getter = function () {
-    				return newval;
-    			}
-    			, setter = function (val) {
-    				oldval = newval;
-    				return newval = handler.call(this, prop, oldval, val);
-    			};
-
-			if (delete this[prop]) { // can't watch constants
-				Object.defineProperty(this, prop, {
-					  get: getter
-					, set: setter
-					, enumerable: true
-					, configurable: true
-				    });
-			     }
-		      }
-	     });
-     }
+    // if (!Object.prototype.watch) {
+	  //    Object.defineProperty(Object.prototype, "watch", {
+		//        enumerable: false
+    //   		, configurable: true
+    //   		, writable: false
+    //   		, value: function (prop, handler) {
+		// 	 var oldval = this[prop]
+    // 			, newval = oldval
+    // 			, getter = function () {
+    // 				return newval;
+    // 			}
+    // 			, setter = function (val) {
+    // 				oldval = newval;
+    // 				return newval = handler.call(this, prop, oldval, val);
+    // 			};
+    //
+		// 	if (delete this[prop]) { // can't watch constants
+		// 		Object.defineProperty(this, prop, {
+		// 			  get: getter
+		// 			, set: setter
+		// 			, enumerable: true
+		// 			, configurable: true
+		// 		    });
+		// 	     }
+		//       }
+	  //    });
+    //  }
     /////////////////////////////////////////////////////////
 
 
     $scope.checkPicks = function() {
-      // $scope.awesomeGames[0].watch('event_status', function() {
-        // check if game is completed
           if ($scope.awesomeGames[0].event_status == "scheduled") {
             console.log("game completed!")
 
@@ -86,7 +92,6 @@ angular.module('finalProjectApp')
               })
             })
           }
-      // })
     }
 
     $scope.submitPicks = function(newPicks, id) {

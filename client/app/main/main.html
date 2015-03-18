@@ -15,7 +15,6 @@
         <div class="PicksCtrl" ng-controller="PickCtrl as picks">
 
           <button name="button" ng-click="checkPicks()">Check Picks</button>
-          <button name="button" ng-click="addPicks()">Submit Picks</button>
 
         <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" rel="{{game.event_id}}" ng-repeat="game in awesomeGames">
           <li><a ng-click="makePick(game.away_team.abbreviation, game.event_id)">{{game.away_team.abbreviation}}</a> @ <a ng-click="makePick(game.home_team.abbreviation, game.event_id)">{{game.home_team.abbreviation}}</a></li>
