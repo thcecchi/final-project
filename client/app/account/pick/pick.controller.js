@@ -95,8 +95,8 @@ angular.module('finalProjectApp')
               })
             }
           })
+          // $scope.getCurrentUser().picks = [] // clears the user's picks after a bet object is created
         }
-        // $scope.getCurrentUser().picks = []
     }
 
     $scope.submitPicks = function(newPicks, id) {

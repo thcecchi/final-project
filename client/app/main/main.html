@@ -9,6 +9,15 @@
 
 <div class="container">
   <div class="row">
+<!-- Start Bets -->
+    <div class="col-lg-12">
+    <div class="BetCtrl" ng-controller="BetCtrl as bets">
+      <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="bet in awesomeBets | filter : {user2: getCurrentUser().name}">
+        <li>{{bet.user1}}</li>
+        <li>{{bet.wager}}</li>
+        <button ng-click="deleteBet(bet)">Delete Bet</button>
+    </div>
+<!-- Start Games -->
     <div class="col-lg-12 left">
       <h1 class="page-header">Scoreboard</h1>
       <div class="gamesCtrl" ng-controller="GameCtrl as awesomeGames">
