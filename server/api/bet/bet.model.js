@@ -8,6 +8,7 @@ var BetSchema = new Schema({
   user1: String,
   user1picks: Array,
   user2: String,
+  user2picks: Array,
   wager: Number
 });
 

@@ -50,7 +50,7 @@ angular.module('finalProjectApp')
         });
       $scope.amount = '';
 
-      $scope.getCurrentUser().picks = [] // clears the user's picks after a bet object is created. <!-- NEED TO HTTP PUT TO USER -->
+      // $scope.getCurrentUser().picks = [] // clears the user's picks after a bet object is created. <!-- NEED TO HTTP PUT TO USER -->
     };
 
 
@@ -61,14 +61,6 @@ angular.module('finalProjectApp')
         console.log(data);
       })
     };
-
-    // $scope.showChallengeBets = function() {
-    //   $scope.awesomeBets.forEach(function(bets) {
-    //     if (moment('MM-DD-YYYY') == bets.date) {
-    //
-    //     }
-    //   })
-    // }
 
 
     $scope.deleteBet = function(bet) {
