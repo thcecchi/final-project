@@ -42,7 +42,6 @@ angular.module('finalProjectApp')
 
       $http.post('/api/bets', {
         date: moment().format('YYYY-MM-DD'),
-        // date: '1999-03-02',
         user1: $scope.getCurrentUser().name,
         user1picks: $scope.getCurrentUser().picks,
         user2: opponent,

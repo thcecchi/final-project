@@ -31,71 +31,44 @@ angular.module('finalProjectApp')
       console.log($scope.getCurrentUser()._id)
 
       $scope.submitPicks(newPicks, userId)
-
     }
-    // object watch polyfill ///////////////////////////////
-    // if (!Object.prototype.watch) {
-	  //    Object.defineProperty(Object.prototype, "watch", {
-		//        enumerable: false
-    //   		, configurable: true
-    //   		, writable: false
-    //   		, value: function (prop, handler) {
-		// 	 var oldval = this[prop]
-    // 			, newval = oldval
-    // 			, getter = function () {
-    // 				return newval;
-    // 			}
-    // 			, setter = function (val) {
-    // 				oldval = newval;
-    // 				return newval = handler.call(this, prop, oldval, val);
-    // 			};
-    //
-		// 	if (delete this[prop]) { // can't watch constants
-		// 		Object.defineProperty(this, prop, {
-		// 			  get: getter
-		// 			, set: setter
-		// 			, enumerable: true
-		// 			, configurable: true
-		// 		    });
-		// 	     }
-		//       }
-	  //    });
-    //  }
-    /////////////////////////////////////////////////////////
 
 
     $scope.checkPicks = function() {
-          if ($scope.awesomeGames[0].event_status == "completed") {
+      // check to see if the games are over
+          if ($scope.awesomeGames[0].event_status == "scheduled") {
             console.log("game completed!")
+            console.log($scope.awesomeBets)
 
-            $scope.getCurrentUser().picks.forEach(function(pks) {
-              console.log(pks)
-              if (index < $scope.getCurrentUser().picks.length) {
-
-              $scope.awesomeGames.forEach(function(games) {
-                // changing the values of the home and away score for test purposes
-                games.home_points_scored = 10
-                games.away_points_scored = 5
-
-                if (games.home_points_scored > games.away_points_scored &&
-                pks == games.home_team.abbreviation) {
-                  $scope.getCurrentUser().record.push(1)
-                  console.log($scope.getCurrentUser().record)
-                }
-
-                else if (games.away_points_scored > games.home_points_scored &&
-                pks == games.away_team.abbreviation) {
-                  $scope.getCurrentUser().record.push(0)
-                  console.log($scope.getCurrentUser().record)
-                }
-
-                else {
-                  console.log("wtf!?!?")
-                }
-              })
-            }
+      // iterate through each bet object
+            $scope.awesomeBets.forEach(function(bets) {
+              console.log(bets)
+            //   $scope.awesomeBets.user1picks.forEach(function(pks) {
+            //
+            //   $scope.awesomeGames.forEach(function(games) {
+            //     // changing the values of the home and away score for test purposes
+            //     games.home_points_scored = 10
+            //     games.away_points_scored = 5
+            //     //
+            //
+            //     if (games.home_points_scored > games.away_points_scored &&
+            //     pks == games.home_team.abbreviation) {
+            //       $scope.getCurrentUser().record.push(1)
+            //       console.log($scope.getCurrentUser().record)
+            //     }
+            //
+            //     else if (games.away_points_scored > games.home_points_scored &&
+            //     pks == games.away_team.abbreviation) {
+            //       $scope.getCurrentUser().record.push(0)
+            //       console.log($scope.getCurrentUser().record)
+            //     }
+            //
+            //     else {
+            //       console.log("wtf!?!?")
+            //     }
+            //   })
+            // }
           })
-          // $scope.getCurrentUser().picks = [] // clears the user's picks after a bet object is created
         }
     }
 
