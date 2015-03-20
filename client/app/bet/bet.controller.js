@@ -12,6 +12,8 @@ angular.module('finalProjectApp')
     $scope.users = User.query();
     console.log($scope.users)
     // //////////////////////////////////////////////////
+
+    $scope.awesomeBets = []
     $scope.todaysBets = []
 
     $http.get('/api/bets').success(function(awesomeBets) {
@@ -24,10 +26,10 @@ angular.module('finalProjectApp')
           console.log($scope.todaysBets)
 
           $scope.awesomeBets = $scope.todaysBets
-          console.log($scope.todaysBets)
+          console.log($scope.awesomeBets)
         }
       })
-    });
+    })
 
 
     $scope.addBet = function(opponent, amount) {

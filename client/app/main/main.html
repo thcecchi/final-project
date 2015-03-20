@@ -15,22 +15,27 @@
       <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="bet in awesomeBets | filter : {user2: getCurrentUser().name}">
         <li>{{bet.user1}}</li>
         <li>{{bet.wager}}</li>
+
         <button ng-click="deleteBet(bet)">Reject Bet</button>
         <button ng-click="acceptChallengeBet(bet._id)">Accept Bet</button>
-    </div>
+      </ul>
+    <!-- </div> -->
 <!-- Start Games -->
     <div class="col-lg-12 left">
       <h1 class="page-header">Scoreboard</h1>
       <div class="gamesCtrl" ng-controller="GameCtrl as awesomeGames">
         <div class="PicksCtrl" ng-controller="PickCtrl as picks">
 
-          <button name="button" ng-click="checkPicks()">Check Picks</button>
+          <button name="button" ng-click="checkUser1Picks();checkUser2Picks()">Check Picks</button>
 
+        <!-- </div> -->
         <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" rel="{{game.event_id}}" ng-repeat="game in awesomeGames">
-          <li><a class='col-md-6 col-lg-6 col-sm-6' ng-click="makePick(game.away_team.abbreviation, game.event_id)">{{game.away_team.abbreviation}}</a> <a ng-click="makePick(game.home_team.abbreviation, game.event_id)">{{game.home_team.abbreviation}}</a></li>
+          <li><a class='col-md-6 col-lg-6 col-sm-6' ng-click="makePick(game.away_team.abbreviation, game.event_id)">{{game.away_team.abbreviation}}</a></li>
+          <li><a ng-click="makePick(game.home_team.abbreviation, game.event_id)">{{game.home_team.abbreviation}}</a></li>
           <!-- <li><a href="#" tooltip="{{game.sport}}">{{game.away_points_scored}} - {{game.home_points_scored}}</a></li> -->
           <li>{{game.site.name}} {{game.site.city}}</li>
 
+        </div>
           <!-- comment form -->
           <div class="commentForm">
             <button name="addComment" ng-click="clicked = !clicked">Add Comment</button>

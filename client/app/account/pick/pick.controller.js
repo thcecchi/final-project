@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('finalProjectApp')
-  .controller('PickCtrl', function ($scope, $http, socket) {
+  .controller('PickCtrl', function ($scope, $http, Auth, User, socket) {
     $scope.message = 'Hello';
 
     // check picks at 3am daily
@@ -11,7 +11,8 @@ angular.module('finalProjectApp')
     if (millisTill3 < 0) {
         millisTill3 += 86400000; // it's after 3am, check again at 3am tomorrow.
     }
-    setTimeout($scope.checkPicks, millisTill3);
+    setTimeout($scope.checkUser1Picks, millisTill3);
+    setTimeout($scope.checkUser2Picks, millisTill3);
 
 
     $scope.makePick = function(winner, game) {
@@ -34,43 +35,84 @@ angular.module('finalProjectApp')
     }
 
 
-    $scope.checkPicks = function() {
+    $scope.checkUser1Picks = function() {
       // check to see if the games are over
           if ($scope.awesomeGames[0].event_status == "scheduled") {
             console.log("game completed!")
-            console.log($scope.awesomeBets)
 
       // iterate through each bet object
             $scope.awesomeBets.forEach(function(bets) {
               console.log(bets)
-            //   $scope.awesomeBets.user1picks.forEach(function(pks) {
-            //
-            //   $scope.awesomeGames.forEach(function(games) {
-            //     // changing the values of the home and away score for test purposes
-            //     games.home_points_scored = 10
-            //     games.away_points_scored = 5
-            //     //
-            //
-            //     if (games.home_points_scored > games.away_points_scored &&
-            //     pks == games.home_team.abbreviation) {
-            //       $scope.getCurrentUser().record.push(1)
-            //       console.log($scope.getCurrentUser().record)
-            //     }
-            //
-            //     else if (games.away_points_scored > games.home_points_scored &&
-            //     pks == games.away_team.abbreviation) {
-            //       $scope.getCurrentUser().record.push(0)
-            //       console.log($scope.getCurrentUser().record)
-            //     }
-            //
-            //     else {
-            //       console.log("wtf!?!?")
-            //     }
-            //   })
-            // }
+
+            // check user1picks
+              bets.user1picks.forEach(function(pks) {
+
+              $scope.awesomeGames.forEach(function(games) {
+                // changing the values of the home and away score for test purposes
+                games.home_points_scored = 10
+                games.away_points_scored = 5
+                //
+
+                if (games.home_points_scored > games.away_points_scored &&
+                pks == games.home_team.abbreviation) {
+                  bets.user1picks.push(1)
+                  console.log(bets.user1picks)
+                }
+
+                else if (games.away_points_scored > games.home_points_scored &&
+                pks == games.away_team.abbreviation) {
+                  bets.user1picks.push(0)
+                  console.log(bets.user1picks)
+                }
+
+                else {
+                  console.log("wtf!?!?")
+                }
+              })
+            })
           })
         }
-    }
+      }
+
+
+          $scope.checkUser2Picks = function() {
+              // check to see if the games are over
+            if ($scope.awesomeGames[0].event_status == "scheduled") {
+              console.log("game completed!")
+              // iterate through each bet object
+                    $scope.awesomeBets.forEach(function(bets) {
+                      console.log(bets)
+
+                    // check user1picks
+                      bets.user2picks.forEach(function(pks) {
+
+                      $scope.awesomeGames.forEach(function(games) {
+                        // changing the values of the home and away score for test purposes
+                        games.home_points_scored = 10
+                        games.away_points_scored = 5
+                        //
+
+                        if (games.home_points_scored > games.away_points_scored &&
+                        pks == games.home_team.abbreviation) {
+                          bets.user2picks.push(1)
+                          console.log(bets.user1picks)
+                        }
+
+                        else if (games.away_points_scored > games.home_points_scored &&
+                        pks == games.away_team.abbreviation) {
+                          bets.user2picks.push(0)
+                          console.log(bets.user1picks)
+                        }
+
+                        else {
+                          console.log("wtf!?!?")
+                        }
+                      })
+                    })
+                  })
+                }
+              }
+
 
     $scope.submitPicks = function(newPicks, id) {
       $http.put('/api/users/' + id, {
@@ -78,7 +120,7 @@ angular.module('finalProjectApp')
       }).success(function (data) {
         console.log(data);
       })
-    };
+    }
 
 
   });
