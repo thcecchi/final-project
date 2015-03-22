@@ -14,6 +14,9 @@ angular.module('finalProjectApp')
     setTimeout($scope.checkUser1Picks, millisTill3);
     setTimeout($scope.checkUser2Picks, millisTill3);
 
+    var user1Total = 0
+    var user2Total = 0
+
 
     $scope.makePick = function(winner, game) {
       console.log(game)
@@ -38,7 +41,7 @@ angular.module('finalProjectApp')
     $scope.checkUser1Picks = function() {
       // check to see if the games are over
           if ($scope.awesomeGames[0].event_status == "scheduled") {
-            console.log("game completed!")
+            console.log("checking User1Picks!")
 
       // iterate through each bet object
             $scope.awesomeBets.forEach(function(bets) {
@@ -55,14 +58,14 @@ angular.module('finalProjectApp')
 
                 if (games.home_points_scored > games.away_points_scored &&
                 pks == games.home_team.abbreviation) {
-                  bets.user1picks.push(1)
-                  console.log(bets.user1picks)
+                  bets.user1record.push(1)
+                  console.log(bets.user1record)
                 }
 
                 else if (games.away_points_scored > games.home_points_scored &&
                 pks == games.away_team.abbreviation) {
-                  bets.user1picks.push(0)
-                  console.log(bets.user1picks)
+                  bets.user1record.push(0)
+                  console.log(bets.user1record)
                 }
 
                 else {
@@ -70,6 +73,15 @@ angular.module('finalProjectApp')
                 }
               })
             })
+
+            user1Total = bets.user1record.reduce(function(a, b) {
+              return a + b;
+            });
+
+            // $scope.submitRecord(bets._id, user1Total)
+
+            console.log('user1Total submit called at _id ' + bets._id + 'user1Total is ' + user1Total)
+            console.log(user1Total)
           })
         }
       }
@@ -78,12 +90,12 @@ angular.module('finalProjectApp')
           $scope.checkUser2Picks = function() {
               // check to see if the games are over
             if ($scope.awesomeGames[0].event_status == "scheduled") {
-              console.log("game completed!")
+              console.log("checking User2Picks!")
               // iterate through each bet object
                     $scope.awesomeBets.forEach(function(bets) {
                       console.log(bets)
 
-                    // check user1picks
+                    // check user2picks
                       bets.user2picks.forEach(function(pks) {
 
                       $scope.awesomeGames.forEach(function(games) {
@@ -94,14 +106,14 @@ angular.module('finalProjectApp')
 
                         if (games.home_points_scored > games.away_points_scored &&
                         pks == games.home_team.abbreviation) {
-                          bets.user2picks.push(1)
-                          console.log(bets.user1picks)
+                          bets.user2record.push(1)
+                          console.log(bets.user2record)
                         }
 
                         else if (games.away_points_scored > games.home_points_scored &&
                         pks == games.away_team.abbreviation) {
-                          bets.user2picks.push(0)
-                          console.log(bets.user1picks)
+                          bets.user2record.push(0)
+                          console.log(bets.user2record)
                         }
 
                         else {
@@ -109,6 +121,16 @@ angular.module('finalProjectApp')
                         }
                       })
                     })
+
+                    user2Total = bets.user2record.reduce(function(a, b) {
+                      return a + b;
+                    });
+
+                    $scope.submitRecord(bets._id, user1Total, user2Total, bets.user1, bets.user2)
+
+                    console.log('user2Total submit called at _id ' + bets._id + 'user2Total is ' + user2Total)
+                    console.log(user2Total)
+
                   })
                 }
               }

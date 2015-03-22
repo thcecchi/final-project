@@ -11,7 +11,11 @@ var BetSchema = new Schema({
   user2picks: Array,
   wager: Number,
   user1record: Array,
-  user2record: Array
+  user2record: Array,
+  user1Total: String,
+  user2Total: String,
+  winner: String,
+  loser: String
 });
 
 module.exports = mongoose.model('Bet', BetSchema);

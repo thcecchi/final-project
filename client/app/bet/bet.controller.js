@@ -51,7 +51,10 @@ angular.module('finalProjectApp')
         });
       $scope.amount = '';
 
-      // $scope.getCurrentUser().picks = [] // clears the user's picks after a bet object is created. <!-- NEED TO HTTP PUT TO USER -->
+      // clear current users picks
+      var userId = $scope.getCurrentUser()._id
+      console.log(userId)
+      $scope.clearPicks(userId)
     };
 
 
@@ -63,6 +66,33 @@ angular.module('finalProjectApp')
       })
     };
 
+    $scope.submitRecord = function(id, total1, total2, user1, user2) {
+      console.log(total1)
+      console.log(total2)
+      if(total1 > total2) {
+        $http.put('/api/bets/' + id, {
+          user1Total: total1,
+          user2Total: total2,
+          winner: user1,
+          loser: user2,
+        }).success(function (data) {
+          console.log(data);
+        })
+      }
+
+      else if (total2 > total1) {
+        $http.put('/api/bets/' + id, {
+          user1Total: total1,
+          user2Total: total2,
+          winner: user2,
+          loser: user1,
+        }).success(function (data) {
+          console.log(data);
+        })
+      }
+
+    };
+
 
     $scope.deleteBet = function(bet) {
       $http.delete('/api/bets/' + bet._id);
@@ -71,6 +101,14 @@ angular.module('finalProjectApp')
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('bet');
     });
+
+    $scope.clearPicks= function(id) {
+      $http.put('/api/users/' + id, {
+        picks: []
+      }).success(function (data) {
+        console.log(data);
+      })
+    }
 
 
 

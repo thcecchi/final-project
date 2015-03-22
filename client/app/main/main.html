@@ -31,7 +31,7 @@
         <!-- </div> -->
         <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" rel="{{game.event_id}}" ng-repeat="game in awesomeGames">
           <li><a class='col-md-6 col-lg-6 col-sm-6' ng-click="makePick(game.away_team.abbreviation, game.event_id)">{{game.away_team.abbreviation}}</a></li>
-          <li><a ng-click="makePick(game.home_team.abbreviation, game.event_id)">{{game.home_team.abbreviation}}</a></li>
+          <li><a class='col-md-6 col-lg-6 col-sm-6' ng-click="makePick(game.home_team.abbreviation, game.event_id)">{{game.home_team.abbreviation}}</a></li>
           <!-- <li><a href="#" tooltip="{{game.sport}}">{{game.away_points_scored}} - {{game.home_points_scored}}</a></li> -->
           <li>{{game.site.name}} {{game.site.city}}</li>
 
