@@ -102,6 +102,7 @@ angular.module('finalProjectApp')
                         // changing the values of the home and away score for test purposes
                         games.home_points_scored = 10
                         games.away_points_scored = 5
+                        console.log('this')
                         //
 
                         if (games.home_points_scored > games.away_points_scored &&
@@ -126,9 +127,9 @@ angular.module('finalProjectApp')
                       return a + b;
                     });
 
-                    $scope.submitRecord(bets._id, user1Total, user2Total, bets.user1, bets.user2)
+                    $scope.submitRecord(bets._id, user1Total, user2Total, bets.user1, bets.user2, bets.user1record, bets.user2record)
 
-                    console.log('user2Total submit called at _id ' + bets._id + 'user2Total is ' + user2Total)
+                    console.log('user2Total submit called at _id ' + bets._id + 'user2Total is ' + user2Total + 'user2record is ' + bets.user2record + 'user1record is ' + bets.user1record)
                     console.log(user2Total)
 
                   })

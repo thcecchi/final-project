@@ -59,22 +59,32 @@ angular.module('finalProjectApp')
 
 
     $scope.acceptChallengeBet = function(id) {
+      console.log(id)
       $http.put('/api/bets/' + id, {
         user2picks: $scope.getCurrentUser().picks,
       }).success(function (data) {
         console.log(data);
+
+        // clear current users picks
+        var userId = $scope.getCurrentUser()._id
+        console.log(userId)
+        $scope.clearPicks(userId)
+
       })
     };
 
-    $scope.submitRecord = function(id, total1, total2, user1, user2) {
-      console.log(total1)
-      console.log(total2)
+    $scope.submitRecord = function(id, total1, total2, user1, user2, record1, record2) {
+      console.log(record1)
+      console.log(record2)
       if(total1 > total2) {
         $http.put('/api/bets/' + id, {
           user1Total: total1,
           user2Total: total2,
           winner: user1,
           loser: user2,
+          user1record: record1,
+          user2record: record2,
+
         }).success(function (data) {
           console.log(data);
         })
@@ -86,6 +96,8 @@ angular.module('finalProjectApp')
           user2Total: total2,
           winner: user2,
           loser: user1,
+          user1record: record1,
+          user2record: record2,
         }).success(function (data) {
           console.log(data);
         })

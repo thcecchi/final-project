@@ -1,3 +1,54 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
 <div class="col-md-12">
-This is the feed view.
+  <header class="hero-unit" id="banner">
+    <div class="container">
+      <h1>Feed</h1>
+    </div>
+  </header>
+
+  <form action="/makepicks">
+    <input class="col-md-12 col-lg-12 col-sm-12" type="submit" value="Create Bet">
+  </form>
+<hr>
+<!-- challenge bets -->
+    <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="bet in awesomeBets | filter : {user2: getCurrentUser().name}">
+      <li><h5>{{bet.user1}} wants to bet:<h5></li>
+      <li><h4>${{bet.wager}}</h4></li>
+
+      <button class="col-md-2 col-lg-2 col-sm-2" ng-click="deleteBet(bet)">Reject Bet</button>
+
+      <form action="/makepicks/{{bet._id}}">
+        <input class="col-md-2 col-lg-2 col-sm-2" type="submit" value="Accept Bet">
+      </form>
+    </ul>
+<!--  -->
+<hr>
+<!-- bet feed -->
+  <div class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="bet in awesomeBets">
+    <h4>{{bet.date}}</h4>
+    <h4 class="col-md-1 col-lg-1 col-sm-1">{{bet.winner}}</h4> <h5 class="col-md-1 col-lg-1 col-sm-1">beat</h5> <h4 class="col-md-2 col-lg-2 col-sm-2">{{bet.loser}}</h4> <h5 class="col-md-1 col-lg-1 col-sm-1">for</h5> <h4 class="col-md-1 col-lg-1 col-sm-1">${{bet.wager}}</h4>
+
+    <!-- comment form -->
+    <div class="FeedcommentCtrl" ng-controller="FeedcommentCtrl as feedComments">
+    <div class="commentForm">
+      <button name="addComment" ng-click="clicked = !clicked">Add Comment</button>
+      <form class="thing-form" ng-show="clicked">
+        <label>Syncs in realtime across clients</label>
+        <p class="input-group">
+          <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newFeedComment">
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-primary" rel="{{bet._id}}" ng-click="addFeedComment(newFeedComment, bet._id)">Add New</button>
+          </span>
+        </p>
+
+        <!-- comments -->
+        <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="feedComment in awesomeFeedComments | filter : {bet: bet._id} : true">
+          <li><a href="#">{{feedComment.comment}}<button type="button" class="close" ng-click="deleteFeedComment(feedComment)">&times;</button></a></li>
+        </ul>
+      </form>
+
+    </div>
+  </div>
+  </div>
+
 </div>

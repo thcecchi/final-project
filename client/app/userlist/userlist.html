@@ -28,7 +28,10 @@
       </div>
 
       <input type="text" placeholder="bet amount" ng-model="betAmount"></input>
-      <button ng-click='addBet(selectedItem, betAmount)'>Send Bet</button>
+      <form action="/feed">
+        <input class="col-md-2 col-lg-2 col-sm-2" type="submit" value="Send Bet" ng-click='addBet(selectedItem, betAmount)'>
+      </form>
+      <!-- <button ng-click='addBet(selectedItem, betAmount)'>Send Bet</button> -->
     </div>
 
 </div>

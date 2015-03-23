@@ -3,8 +3,8 @@
 angular.module('finalProjectApp')
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/feed', {
+      .when('/', {
         templateUrl: 'app/feed/feed.html',
-        controller: 'FeedCtrl'
+        controller: 'BetCtrl'
       });
   });

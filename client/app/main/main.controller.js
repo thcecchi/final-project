@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('finalProjectApp')
-  .controller('MainCtrl', function ($scope, $http, socket, Auth) {
+  .controller('MainCtrl', function ($scope, $http, socket, Auth, $routeParams) {
     $scope.awesomeThings = [];
 
     $http.get('/api/things').success(function(awesomeThings) {
