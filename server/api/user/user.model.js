@@ -19,7 +19,7 @@ var UserSchema = new Schema({
   salt: String,
   twitter: {},
   google: {},
-  github: {}
+  github: {},
 });
 
 /**
@@ -42,7 +42,7 @@ UserSchema
   .get(function() {
     return {
       'name': this.name,
-      'role': this.role
+      'role': this.role,
     };
   });
 

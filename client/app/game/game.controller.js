@@ -38,10 +38,10 @@ angular.module('finalProjectApp')
         // $('.last').append(el);
         $('.last').replaceWith(el);
 
-        var el2 = angular.element('<a href="/feed">Submit Picks</a>');
-        $('.lastAccept').append(el2);
+        var el2 = angular.element('<a class="col-md-7 col-lg-7 col-sm-7 col-sm-offset-4 col-md-offset-4 col-lg-offset-4" href="/feed"><h1>Submit Picks</h1></a>');
+        $('.lastAccept').replaceWith(el2);
 
-        $('.lastAccept').on("click", "a", function(){
+        $('.BetCtrl').on("click", "a", function(){
           $scope.acceptChallengeBet();
           console.log('fired')
         });
