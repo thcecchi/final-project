@@ -28,6 +28,35 @@ angular.module('finalProjectApp')
       });
     }
 
+    $scope.game_index = 0;
+    $scope.game = {};
+
+    $scope.next = function () {
+      if ($scope.game_index >= $scope.awesomeGames.length - 1) {
+        // $scope.game_index = 0;
+        var el = angular.element('<a class="col-md-7 col-lg-7 col-sm-7 col-sm-offset-4 col-md-offset-4 col-lg-offset-4" href="/userlist"><h1>Find Opponent</h1></a>');
+        // $('.last').append(el);
+        $('.last').replaceWith(el);
+
+        var el2 = angular.element('<a href="/feed">Submit Picks</a>');
+        $('.lastAccept').append(el2);
+
+        $('.lastAccept').on("click", "a", function(){
+          $scope.acceptChallengeBet();
+          console.log('fired')
+        });
+      } else {
+        $scope.game_index++;
+      }
+      console.log($scope.awesomeGames.length + '/' + $scope.game_index);
+    };
+
+    $scope.choose = function (game) {
+      $scope.game = game;
+    }
+
+
+
 
 
     });

@@ -15,7 +15,8 @@ var BetSchema = new Schema({
   user1Total: String,
   user2Total: String,
   winner: String,
-  loser: String
+  loser: String,
+  betStatus: String
 });
 
 module.exports = mongoose.model('Bet', BetSchema);

@@ -45,6 +45,8 @@ angular.module('finalProjectApp')
 
       // iterate through each bet object
             $scope.awesomeBets.forEach(function(bets) {
+              if (bets.betStatus = "accepted") {
+
               console.log(bets)
 
             // check user1picks
@@ -69,20 +71,30 @@ angular.module('finalProjectApp')
                 }
 
                 else {
-                  console.log("wtf!?!?")
+                  console.log(games.home_team.abbreviation)
+                  console.log(pks)
+                  console.log('wtf?!?!')
                 }
               })
             })
 
-            user1Total = bets.user1record.reduce(function(a, b) {
-              return a + b;
-            });
+            if (bets.user1record.length > 0) {
+              user1Total = bets.user1record.reduce(function(a, b) {
+                return a + b;
+              });
+              user1Total = 0
+            }
+            else {
+              user1Total = 0
+            }
+
 
             // $scope.submitRecord(bets._id, user1Total)
 
             console.log('user1Total submit called at _id ' + bets._id + 'user1Total is ' + user1Total)
             console.log(user1Total)
-          })
+          }
+        })
         }
       }
 
@@ -93,6 +105,7 @@ angular.module('finalProjectApp')
               console.log("checking User2Picks!")
               // iterate through each bet object
                     $scope.awesomeBets.forEach(function(bets) {
+                      if (bets.betStatus = "accepted") {
                       console.log(bets)
 
                     // check user2picks
@@ -102,7 +115,6 @@ angular.module('finalProjectApp')
                         // changing the values of the home and away score for test purposes
                         games.home_points_scored = 10
                         games.away_points_scored = 5
-                        console.log('this')
                         //
 
                         if (games.home_points_scored > games.away_points_scored &&
@@ -118,21 +130,27 @@ angular.module('finalProjectApp')
                         }
 
                         else {
-                          console.log("wtf!?!?")
+                          console.log(games.home_points_scored)
                         }
                       })
                     })
 
-                    user2Total = bets.user2record.reduce(function(a, b) {
-                      return a + b;
-                    });
+                    if (bets.user2record.length > 0) {
+                      user2Total = bets.user2record.reduce(function(a, b) {
+                        return a + b;
+                      });
+                    }
+                    else {
+                      user2Total = 0
+                    }
 
                     $scope.submitRecord(bets._id, user1Total, user2Total, bets.user1, bets.user2, bets.user1record, bets.user2record)
 
                     console.log('user2Total submit called at _id ' + bets._id + 'user2Total is ' + user2Total + 'user2record is ' + bets.user2record + 'user1record is ' + bets.user1record)
                     console.log(user2Total)
 
-                  })
+                  }
+                })
                 }
               }
 

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('finalProjectApp')
-  .controller('BetCtrl', function ($scope, $http, Auth, User, socket) {
+  .controller('BetCtrl', function ($scope, $http, Auth, User, socket, $routeParams) {
     $scope.message = 'Hello';
 
     // gets the username of logged in user ////////
@@ -15,19 +15,38 @@ angular.module('finalProjectApp')
 
     $scope.awesomeBets = []
     $scope.todaysBets = []
+    $scope.acceptedBets = []
+    $scope.completedBets = []
+    $scope.pendingBets = []
+
+
 
     $http.get('/api/bets').success(function(awesomeBets) {
       $scope.awesomeBets = awesomeBets;
       socket.syncUpdates('bet', $scope.awesomeBets);
 
       $scope.awesomeBets.forEach(function(bets) {
-        if (moment().format('YYYY-MM-DD') == bets.date) {
+        if (moment().format('MM-DD-YYYY') === bets.date && bets.hasOwnProperty('winner') == false && bets.betStatus === 'pending') {
           $scope.todaysBets.push(bets)
           console.log($scope.todaysBets)
-
-          $scope.awesomeBets = $scope.todaysBets
-          console.log($scope.awesomeBets)
         }
+
+        else if (bets.hasOwnProperty('winner') == true) {
+          angular.element('.challengeBet').remove()
+          $scope.completedBets.push(bets)
+          console.log($scope.completedBets)
+        }
+
+        else if (moment().format('MM-DD-YYYY') === bets.date && bets.betStatus === 'accepted') {
+          $scope.acceptedBets.push(bets)
+          console.log($scope.acceptedBets)
+        }
+
+        // else if (moment().format('MM-DD-YYYY') === bets.date && bets.betStatus == 'pending') {
+        //   $scope.pendingBets.push(bets)
+        //   console.log($scope.pendingBets)
+        // }
+
       })
     })
 
@@ -38,16 +57,17 @@ angular.module('finalProjectApp')
       }
       console.log(opponent)
       console.log(amount)
-      console.log(moment().format('YYYY-MM-DD'))
+      console.log(moment().format('MM-DD-YYYY'))
       console.log($scope.getCurrentUser().name)
       console.log($scope.getCurrentUser().picks)
 
       $http.post('/api/bets', {
-        date: moment().format('YYYY-MM-DD'),
+        date: moment().format('MM-DD-YYYY'),
         user1: $scope.getCurrentUser().name,
         user1picks: $scope.getCurrentUser().picks,
         user2: opponent,
-        wager: amount
+        wager: amount,
+        betStatus: 'pending'
         });
       $scope.amount = '';
 
@@ -58,10 +78,10 @@ angular.module('finalProjectApp')
     };
 
 
-    $scope.acceptChallengeBet = function(id) {
-      console.log(id)
-      $http.put('/api/bets/' + id, {
+    $scope.acceptChallengeBet = function() {
+      $http.put('/api/bets/' + $routeParams.betId, {
         user2picks: $scope.getCurrentUser().picks,
+        betStatus: 'accepted'
       }).success(function (data) {
         console.log(data);
 
@@ -114,12 +134,21 @@ angular.module('finalProjectApp')
       socket.unsyncUpdates('bet');
     });
 
-    $scope.clearPicks= function(id) {
+    $scope.clearPicks = function(id) {
       $http.put('/api/users/' + id, {
         picks: []
       }).success(function (data) {
         console.log(data);
       })
+    }
+
+    $scope.checkForAcceptedBets = function() {
+      // $scope.awesomeBets.forEach(function (bet) {
+        if (bets.hasOwnProperty('accepted')) {
+          console.log('has')
+          $( ".challengeBet" ).remove();
+        }
+      // })
     }
 
 

@@ -12,14 +12,7 @@
 <!-- Start Bets -->
     <div class="col-lg-12">
     <div class="BetCtrl" ng-controller="BetCtrl as bets">
-      <!-- <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="bet in awesomeBets | filter : {user2: getCurrentUser().name}">
-        <li>{{bet.user1}}</li>
-        <li>{{bet.wager}}</li>
 
-        <button ng-click="deleteBet(bet)">Reject Bet</button>
-        <button ng-click="acceptChallengeBet(bet._id)">Accept Bet</button>
-      </ul> -->
-    <!-- </div> -->
 <!-- Start Games -->
     <div class="col-lg-12 left">
       <h1 class="page-header">Today's Games</h1>
@@ -29,17 +22,16 @@
           <button name="button" ng-click="checkUser1Picks();checkUser2Picks()">Check Picks</button>
 
         <!-- </div> -->
-        <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" rel="{{game.event_id}}" ng-repeat="game in awesomeGames">
-          <li><a class='col-md-6 col-lg-6 col-sm-6' ng-click="makePick(game.away_team.abbreviation, game.event_id)">{{game.away_team.abbreviation}}</a></li>
-          <li><a class='col-md-6 col-lg-6 col-sm-6' ng-click="makePick(game.home_team.abbreviation, game.event_id)">{{game.home_team.abbreviation}}</a></li>
-          <!-- <li><a href="#" tooltip="{{game.sport}}">{{game.away_points_scored}} - {{game.home_points_scored}}</a></li> -->
+        <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" rel="{{game.event_id}}" ng-repeat="game in awesomeGames" ng-class="{'lastAccept':$last}">
+         <div ng-if="game_index == $index">
+          <li><a class='col-md-6 col-lg-6 col-sm-6' ng-click="makePick(game.away_team.abbreviation, game.event_id);next()">{{game.away_team.abbreviation}}</a></li>
+          <li><a class='col-md-6 col-lg-6 col-sm-6' ng-click="makePick(game.home_team.abbreviation, game.event_id);next()">{{game.home_team.abbreviation}}</a></li>
           <li>{{game.site.name}} {{game.site.city}}</li>
 
-        <!-- </div> -->
           <!-- comment form -->
           <div class="commentForm">
             <!-- comments -->
-            <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="thing in awesomeThings | filter : {game: game.event_id} : true">
+            <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="thing in awesomeThings | filter : {game: game.event_id} : true">
               <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
             </ul>
             <button name="addComment" ng-click="clicked = !clicked">Add Comment</button>
@@ -53,21 +45,12 @@
               </p>
             </form>
           </div>
-
-
+         </div>
           </div>
         </ul>
       </div>
     </div>
-    <!-- <a href="/userlist"><button class-"col-md-12 col-lg-12 col-sm-12">Find Opponent</button></a> -->
-    <form action="/userlist">
-      <input class="col-md-2 col-lg-2 col-sm-2" type="submit" value="Find Opponent">
-    </form>
 
-    <form action="/feed">
-      <input class="col-md-2 col-lg-2 col-sm-2" type="submit" value="Submit Picks" ng-click="acceptChallengeBet(bet._id)">
-    </form>
-    <!-- <button class="col-md-2 col-lg-2 col-sm-2" ng-click="acceptChallengeBet(bet._id)">Accept Bet</button> -->
 </div>
 
 <footer class="footer">

@@ -6,27 +6,41 @@
     </div>
   </header>
 
-  <form action="/makepicks">
+  <form action="/createbet">
     <input class="col-md-12 col-lg-12 col-sm-12" type="submit" value="Create Bet">
   </form>
-<hr>
+
 <!-- challenge bets -->
-    <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="bet in awesomeBets | filter : {user2: getCurrentUser().name}">
-      <li><h5>{{bet.user1}} wants to bet:<h5></li>
+    <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="bet in todaysBets | filter : {user2: getCurrentUser().name}">
+      <li><h5>{{bet.user1}} wants to bet:</h5></li>
       <li><h4>${{bet.wager}}</h4></li>
 
-      <button class="col-md-2 col-lg-2 col-sm-2" ng-click="deleteBet(bet)">Reject Bet</button>
+      <a class="col-md-4 col-lg-4 col-sm-4" ng-click="deleteBet(bet)">Reject Bet</a>
 
-      <form action="/makepicks/{{bet._id}}">
-        <input class="col-md-2 col-lg-2 col-sm-2" type="submit" value="Accept Bet">
-      </form>
+      <a class="col-md-4 col-lg-4 col-sm-4" href="/makepicks/{{bet._id}}">Accept Bet</a>
     </ul>
-<!--  -->
+
+<!-- accepted bets user1-->
+    <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="bet in acceptedBets | filter : {user1: getCurrentUser().name}">
+      <li><h5>{{bet.user2}} accepted your bet for ${{bet.wager}}<h5></li>
+    </ul>
+
+<!-- accepted bets user2-->
+    <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="bet in acceptedBets | filter : {user2: getCurrentUser().name}">
+      <li><h5>You accepted a bet with {{bet.user1}} for ${{bet.wager}}<h5></li>
+    </ul>
+
+<!-- pending bets-->
+    <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="bet in todaysBets | filter : {user1: getCurrentUser().name}">
+      <li><h5>Pending bet with {{bet.user2}} for ${{bet.wager}}<h5></li>
+    </ul>
+
 <hr>
 <!-- bet feed -->
-  <div class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="bet in awesomeBets">
-    <h4>{{bet.date}}</h4>
+  <div class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="bet in completedBets">
+    <h5>{{bet.date}}</h5>
     <h4 class="col-md-1 col-lg-1 col-sm-1">{{bet.winner}}</h4> <h5 class="col-md-1 col-lg-1 col-sm-1">beat</h5> <h4 class="col-md-2 col-lg-2 col-sm-2">{{bet.loser}}</h4> <h5 class="col-md-1 col-lg-1 col-sm-1">for</h5> <h4 class="col-md-1 col-lg-1 col-sm-1">${{bet.wager}}</h4>
+    <a class="col-md-4 col-lg-4 col-sm-4" ng-click="deleteBet(bet)">Reject Bet</a>
 
     <!-- comment form -->
     <div class="FeedcommentCtrl" ng-controller="FeedcommentCtrl as feedComments">
