@@ -21,14 +21,15 @@
   padding-bottom: 2%;
 }
 
-.findOpponent {
+.findOpponent, .submitPicks {
   text-align: center;
   padding-top: 5%;
   padding-bottom: 5%;
   color: black;
 
+
   &:hover {
     text-decoration: none;
-    color: firebrick;
+    color: $red;
   }
 }

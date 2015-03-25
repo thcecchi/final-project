@@ -1,13 +1,17 @@
+$blue: #0046AD;
+$red: #D0103A;
+
 .createBet {
   padding: 0;
-  // margin-top: 5px;
-  // margin-bottom: 30px;
+  margin-top: 6px;
+  margin-bottom: 5px;
   padding-top: 5px;
   padding-bottom: 4px;
-  background: firebrick;
+  background: $red;
   text-align: center;
   line-height: 0px;
   color: ghostwhite;
+  border-radius: 10px;
 
   h2 {
     line-height: 0;
@@ -17,52 +21,67 @@
 
   &:hover {
     background: ghostwhite;
-    color: firebrick;
-    border: 1px solid firebrick;
+    color: $red;
+    border: 1px solid $red;
     text-decoration: none;
     padding-bottom: 2px;
   }
 }
 
-// .tabset {
-//   border-radius: 10px;
-// }
 .acceptReject {
   cursor: pointer;
 
   &:hover {
-    color: firebrick;
+    color: $red;
     text-decoration: none;
   }
 }
 
 .nav-tab{
   cursor: pointer;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  border: 1px solid #0046AD;
   background: ghostwhite;
+  margin-top: 1%;
 }
 
-// .active {
-//   border-radius: 0;
-//   color: green;
-// }
+.nav-pills > li.active > a{
+      border-radius: 0px;
+      background: $blue;
+
+      &:hover {
+        background: $blue;
+      }
+}
+
 
 .allBetsHeader {
-  color: firebrick;
+  color: $red;
 }
 
 .betCard {
-  border: 1px solid firebrick;
+  border: 1px solid $red;
   margin-bottom: 3%;
-  border-radius: 10px;
+  border-radius: 5px;
   background: ghostwhite;
+  box-shadow: 1px 1px 10px #888888;
 
   .comments{
     color: gray;
     border-top: 1px dashed black;
     width: 80%;
   }
+}
+
+.notificationCard {
+  border-radius: 5px;
+
+  h5, a {
+    text-align: center;
+  }
+}
+
+.pendingBets, .acceptedBets, .challengeBets {
+  background: ghostwhite;
 }
 
 .pendingBets {
@@ -74,7 +93,7 @@
 }
 
 .challengeBets{
-  margin-left: 1.5%;
+
 }
 
 .betDate {
@@ -87,9 +106,10 @@
 
 // comments
 .addComment {
-  border: 1px solid firebrick;
-  color: firebrick;
+  border: 1px solid $red;
+  color: $red;
   background: white;
+  margin-bottom: 10px;
 }
 
 .commentInput {
@@ -101,7 +121,7 @@
   background: ghostwhite;
   box-shadow: none;
   margin-bottom: 1%;
-  color: firebrick;
+  color: $red;
 
   &:focus {
     outline: 0;
@@ -117,12 +137,15 @@
   background: white;
   margin-bottom: 1%;
 
-
   &:hover {
-    border: 1px solid firebrick;
-    color: firebrick;
+    border: 1px solid $red;
+    color: $red;
     background: white;
   }
+}
+
+.input-group-btn:last-child > .btn, .input-group-btn:last-child > .btn-group {
+  margin-left: 20%;
 }
 
 // NAV BAR
@@ -131,5 +154,12 @@
 }
 
 .logo {
-  color: firebrick;
+  color: $red;
+  margin-bottom: 1%;
+
+  &:hover {
+    text-decoration: none;
+    border-bottom: 3px dashed $blue;
+    color: $red;
+  }
 }

@@ -1,11 +1,5 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>The 700 Section</h1>
-  </div>
-</header>
-
 <div class="container">
   <div class="row">
 <!-- Start Bets -->
@@ -14,39 +8,37 @@
 
 <!-- Start Games -->
     <div class="col-md-12 col-lg-12 col-sm-12">
-      <h1 class="col-md-6 col-md-offset-4">Today's Games</h1>
+      <h1 class="header col-md-12">TODAYS GAMES</h1>
       <div class="gamesCtrl" ng-controller="GameCtrl as awesomeGames">
         <div class="PicksCtrl" ng-controller="PickCtrl as picks">
 
           <!-- <button name="button" ng-click="checkUser1Picks();checkUser2Picks()">Check Picks</button> -->
 
-        <!-- </div> -->
+      <div class="row">
         <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" rel="{{game.event_id}}" ng-repeat="game in awesomeGames" ng-class="{'lastAccept':$last}">
          <div ng-if="game_index == $index">
-          <li class='col-md-2 col-lg-2 col-sm-2 col-sm-offset-3 col-md-offset-3 col-lg-offset-3' ng-click="makePick(game.away_team.abbreviation, game.event_id);next()"><h1>{{game.away_team.abbreviation}}</h1></li>
-          <li class='col-md-2 col-lg-2 col-sm-2 col-sm-offset-3 col-md-offset-3 col-lg-offset-3' ng-click="makePick(game.home_team.abbreviation, game.event_id);next()"><h1>{{game.home_team.abbreviation}}</h1></li>
-          <!-- <li><a href="#" tooltip="{{game.sport}}">{{game.away_points_scored}} - {{game.home_points_scored}}</a></li> -->
-          <li class='col-md-8 col-lg-8 col-sm-8 col-sm-offset-4 col-md-offset-4 col-lg-offset-4'><h4>{{game.site.name}} {{game.site.city}}</h4></li>
+          <li class='game col-md-2 col-lg-2 col-sm-2 col-sm-offset-3 col-md-offset-3 col-lg-offset-3' ng-click="makePick(game.away_team.abbreviation, game.event_id);next()"><h1>{{game.away_team.abbreviation}}</h1></li>
+          <li class='game col-md-2 col-lg-2 col-sm-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2' ng-click="makePick(game.home_team.abbreviation, game.event_id);next()"><h1>{{game.home_team.abbreviation}}</h1></li>
 
-        <!-- </div> -->
+          <li class='location col-md-8 col-lg-8 col-sm-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2'><h4>{{game.site.name}} {{game.site.city}}</h4></li>
+
+
           <!-- comment form -->
           <div class="commentForm col-md-6 col-lg-6 col-sm-6 col-sm-offset-3 col-md-offset-3 col-lg-offset-3">
-            <button class="col-md-6 col-lg-6 col-sm-6 col-sm-offset-3 col-md-offset-3 col-lg-offset-3" name="addComment" ng-click="clicked = !clicked">Add Comment</button>
-
+            <button class="addComment col-md-6 col-lg-6 col-sm-6 col-sm-offset-3 col-md-offset-3 col-lg-offset-3" name="addComment" ng-click="clicked = !clicked">Add Comment</button>
+            <form class="thing-form col-md-12 col-lg-12 col-sm-12" ng-show="clicked">
+              <!-- <p class="input-group col-md-12 col-lg-12 col-sm-12"> -->
+                <input type="text" class="commentInput col-md-8 col-lg-8 col-sm-8 col-lg-offset-1" placeholder="What" ng-model="newThing">
+                <!-- <span class="input-group-btn"> -->
+                  <button type="submit" class="commentSubmit btn" rel="{{game.event_id}}" ng-click="addThing(newThing, game.event_id)">Add!</button>
+                <!-- </span> -->
+              <!-- </p> -->
+            </form>
             <!-- comments -->
-            <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" ng-repeat="thing in awesomeThings | filter : {game: game.event_id} : true">
-              <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
+            <ul class="comments nav col-md-12 col-lg-12 col-sm-12" ng-repeat="thing in awesomeThings | filter : {game: game.event_id} : true">
+              <li>{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></li>
             </ul>
 
-            <form class="thing-form col-md-12 col-lg-12 col-sm-12" ng-show="clicked">
-              <h5>Whatchya sayin?</h5>
-              <p class="input-group col-md-12 col-lg-12 col-sm-12">
-                <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">
-                <span class="input-group-btn">
-                  <button type="submit" class="btn btn-primary" rel="{{game.event_id}}" ng-click="addThing(newThing, game.event_id)">Add!</button>
-                </span>
-              </p>
-            </form>
           </div>
         </div>
           </div>
@@ -57,10 +49,3 @@
 
 
 </div>
-
-<footer class="footer">
-  <div class="container">
-      <p>Bantr |
-        <a href="https://twitter.com/tylercecchi">@tylercecchi</a> |
-  </div>
-</footer>

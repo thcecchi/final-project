@@ -16,11 +16,11 @@
         <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
       </ul> -->
       <div>
-        <a class='navbar-left col-md-2 col-lg-2 col-sm-2 titleLogo' href="/" class="navbar-brand"><h1 class="logo">RUNNER</h1></a>
+        <a class='logo navbar-left col-md-2 col-lg-2 col-sm-2 titleLogo' href="/" class="navbar-brand"><h1>RUNNER</h1></a>
       </div>
 
       <div>
-        <a href="/createbet" class="createBet col-md-4 col-lg-4 col-sm-4 col-lg-offset-2" id="navwrap"><h2>Create Bet</h2></a>
+        <a href="/createbet" ng-show="isLoggedIn()" class="createBet col-md-4 col-lg-4 col-sm-4 col-lg-offset-2" id="navwrap"><h2>Create Bet</h2></a>
       </div>
 
       <ul class="nav navbar-nav navbar-right">

@@ -2,12 +2,16 @@
   margin-top: 5%;
 }
 
+.leftSide h3 {
+  
+}
+
 .usersList {
   cursor: pointer;
   list-style-type: none;
 
   .indivUser {
-    border-bottom: 1px dashed firebrick;
+    border-bottom: 1px dashed $red;
     text-align: center;
   }
 }
@@ -26,7 +30,7 @@
 
 .filterBar {
   margin-bottom: 5%;
-  color: firebrick;
+  color: $red;
 }
 
 .submitButton {
@@ -35,8 +39,8 @@
   background: white;
 
   &:hover {
-    border: 1px solid firebrick;
-    color: firebrick;
+    border: 1px solid $red;
+    color: $red;
   }
 }
 
@@ -45,5 +49,5 @@
 }
 
 .betBar {
-  color: firebrick;
+  color: $red;
 }
