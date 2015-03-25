@@ -7,7 +7,7 @@ angular.module('finalProjectApp', [
   'ngRoute',
   'btford.socket-io',
   'ui.bootstrap',
-  'angularMoment'
+  'angularMoment',
 ])
   .config(function ($routeProvider, $locationProvider, $httpProvider) {
     $routeProvider

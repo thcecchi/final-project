@@ -1,0 +1,34 @@
+.header {
+  text-align: center;
+}
+
+.game {
+  cursor: pointer;
+  color: red;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  text-align: center;
+
+  &:hover {
+    color: green;
+    border: 1px solid green;
+  }
+}
+
+.location {
+  text-align: center;
+  margin-top: 1%;
+  padding-bottom: 2%;
+}
+
+.findOpponent {
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  color: black;
+
+  &:hover {
+    text-decoration: none;
+    color: firebrick;
+  }
+}

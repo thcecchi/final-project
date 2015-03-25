@@ -26,6 +26,7 @@ angular.module('finalProjectApp')
         user: $scope.getCurrentUser().name,
         });
       $scope.newFeedComment = '';
+      console.log('fired')
     };
 
 

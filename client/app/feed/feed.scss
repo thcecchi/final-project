@@ -1,8 +1,135 @@
 .createBet {
   padding: 0;
-  margin-top: 10px;
-  border-radius: 5px;
-  border: 2px solid firebrick;
+  // margin-top: 5px;
+  // margin-bottom: 30px;
+  padding-top: 5px;
+  padding-bottom: 4px;
+  background: firebrick;
   text-align: center;
   line-height: 0px;
+  color: ghostwhite;
+
+  h2 {
+    line-height: 0;
+    padding: 3%;
+    padding-bottom: 5%;
+  }
+
+  &:hover {
+    background: ghostwhite;
+    color: firebrick;
+    border: 1px solid firebrick;
+    text-decoration: none;
+    padding-bottom: 2px;
+  }
+}
+
+// .tabset {
+//   border-radius: 10px;
+// }
+.acceptReject {
+  cursor: pointer;
+
+  &:hover {
+    color: firebrick;
+    text-decoration: none;
+  }
+}
+
+.nav-tab{
+  cursor: pointer;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  background: ghostwhite;
+}
+
+// .active {
+//   border-radius: 0;
+//   color: green;
+// }
+
+.allBetsHeader {
+  color: firebrick;
+}
+
+.betCard {
+  border: 1px solid firebrick;
+  margin-bottom: 3%;
+  border-radius: 10px;
+  background: ghostwhite;
+
+  .comments{
+    color: gray;
+    border-top: 1px dashed black;
+    width: 80%;
+  }
+}
+
+.pendingBets {
+  color: orange;
+}
+
+.acceptedBets {
+  color: green;
+}
+
+.challengeBets{
+  margin-left: 1.5%;
+}
+
+.betDate {
+  margin-left: 2%;
+}
+
+.challengeTab {
+  color: red;
+}
+
+// comments
+.addComment {
+  border: 1px solid firebrick;
+  color: firebrick;
+  background: white;
+}
+
+.commentInput {
+  border: none;
+  border-bottom: 1px solid black;
+  height: 30px;
+  font-size: 1.5em;
+  border-radius: 0;
+  background: ghostwhite;
+  box-shadow: none;
+  margin-bottom: 1%;
+  color: firebrick;
+
+  &:focus {
+    outline: 0;
+    border-bottom: 1px solid black;
+  }
+}
+
+.commentSubmit{
+  height: 30px;
+  color: black;
+  border: 1px solid black;
+  border-radius: 0;
+  background: white;
+  margin-bottom: 1%;
+
+
+  &:hover {
+    border: 1px solid firebrick;
+    color: firebrick;
+    background: white;
+  }
+}
+
+// NAV BAR
+.navbar-static-top {
+  box-shadow: 1px 1px 10px #888888;
+}
+
+.logo {
+  color: firebrick;
 }

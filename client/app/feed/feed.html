@@ -1,71 +1,91 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 <div class="col-md-12">
-  <header class="col-md-6 col-lg-6 col-sm-6 col-lg-offset-3">
-    <div class="container">
-      <h1>TICKETS</h1>
-    </div>
-  </header>
 
-  <!-- <form action="/createbet">
-    <input class="col-md-5 col-lg-5 col-sm-5" type="submit" value="Create Bet">
-  </form> -->
+<!-- <div class='row'>
+  <div class="FeedCtrl" ng-controller="FeedCtrl as feed">
+    <a href="/createbet" class="createBet col-md-4 col-lg-4 col-sm-4 col-lg-offset-4" id="navwrap"><h2>Create Bet</h2></a>
+  </div>
+</div> -->
 
-  <a href="/createbet" class="createBet col-md-2 col-lg-2 col-sm-2"><h2>Create Bet</h2></a>
 
+
+<tabset class="tabset" justified='true' type='pills'>
 <!-- challenge bets -->
-    <ul class="nav col-md-12 col-lg-12 col-sm-12" ng-repeat="bet in todaysBets | filter : {user2: getCurrentUser().name}">
-      <li><h5>{{bet.user1}} wants to bet:</h5></li>
-      <li><h4>${{bet.wager}}</h4></li>
+<tab class="challengeTab nav-tab" heading="Challenges" active='true'>
+    <ul class="challengeBets nav col-md-12 col-lg-12 col-sm-12" ng-repeat="bet in todaysBets | filter : {user2: getCurrentUser().name}">
+      <li><h5>{{bet.user1}} wants to bet: ${{bet.wager}}</h5></li>
 
-      <a class="col-md-4 col-lg-4 col-sm-4" ng-click="deleteBet(bet)">Reject Bet</a>
+      <a class="acceptReject col-md-1 col-lg-1 col-sm-1" ng-click="deleteBet(bet)">Reject Bet</a>
 
-      <a class="col-md-4 col-lg-4 col-sm-4" href="/makepicks/{{bet._id}}">Accept Bet</a>
+      <a class="acceptReject col-md-1 col-lg-1 col-sm-1" href="/makepicks/{{bet._id}}">Accept Bet</a>
     </ul>
-
+</tab>
 <!-- accepted bets user1-->
-    <ul class="nav col-md-12 col-lg-12 col-sm-12 col-lg-offset-3" ng-repeat="bet in acceptedBets | filter : {user1: getCurrentUser().name}">
+<tab class="nav-tab" heading="Accepted Bets">
+    <ul class="acceptedBets nav col-md-12 col-lg-12 col-sm-12 col-lg-offset-4" ng-repeat="bet in acceptedBets | filter : {user1: getCurrentUser().name}">
       <li><h5>{{bet.user2}} accepted your bet for ${{bet.wager}}<h5></li>
     </ul>
 
 <!-- accepted bets user2-->
-    <ul class="nav col-md-12 col-lg-12 col-sm-12 col-lg-offset-3" ng-repeat="bet in acceptedBets | filter : {user2: getCurrentUser().name}">
+    <ul class="acceptedBets nav col-md-12 col-lg-12 col-sm-12 col-lg-offset-4" ng-repeat="bet in acceptedBets | filter : {user2: getCurrentUser().name}">
       <li><h5>You accepted a bet with {{bet.user1}} for ${{bet.wager}}<h5></li>
     </ul>
 
-
+</tab>
 <!-- pending bets-->
-    <ul class="nav col-md-12 col-lg-12 col-sm-12 col-lg-offset-3" ng-repeat="bet in todaysBets | filter : {user1: getCurrentUser().name}">
+<tab class="nav-tab" heading="Pending Bets">
+    <ul class="pendingBets nav col-md-12 col-lg-12 col-sm-12 col-lg-offset-4" ng-repeat="bet in todaysBets | filter : {user1: getCurrentUser().name}">
       <li><h5>Pending bet with {{bet.user2}} for ${{bet.wager}}<h5></li>
         <!-- <a class="col-md-4 col-lg-4 col-sm-4" ng-click="deleteBet(bet)">Reject Bet</a> -->
     </ul>
+</tab>
+</tabset>
+
+<!-- create bet button -->
+<!-- <div class='row'>
+  <div class="FeedCtrl" ng-controller="FeedCtrl as feed">
+    <a href="/createbet" class="createBet col-md-4 col-lg-4 col-sm-4 col-lg-offset-4" id="navwrap"><h2>Create Bet</h2></a>
+  </div>
+</div> -->
+
+<!-- empty row -->
+<div class="row"></div>
 
 <!-- bet feed -->
-  <div class="nav col-md-10 col-lg-10 col-sm-10 col-lg-offset-2" ng-repeat="bet in completedBets">
-    <h5>{{bet.date}}</h5>
-    <h4 class="col-md-1 col-lg-1 col-sm-1">{{bet.winner}}</h4> <h5 class="col-md-1 col-lg-1 col-sm-1">beat</h5> <h4 class="col-md-2 col-lg-2 col-sm-2">{{bet.loser}}</h4> <h5 class="col-md-1 col-lg-1 col-sm-1">for</h5> <h4 class="col-md-1 col-lg-1 col-sm-1">${{bet.wager}}</h4>
+<div class="row">
+  <h2 class='allBetsHeader col-md-3 col-lg-3 col-sm-3 col-lg-offset-5'>All Bets</h2>
+
+  <div class="betCard nav col-md-7 col-lg-7 col-sm-7 col-lg-offset-2" ng-repeat="bet in completedBets">
+    <h5 class='betDate'>{{bet.date}}</h5>
+    <h4 class="col-md-9 col-lg-9 col-sm-9">{{bet.winner}} beat {{bet.loser}} for ${{bet.wager}}</h4>
     <!-- <a class="col-md-4 col-lg-4 col-sm-4" ng-click="deleteBet(bet)">Reject Bet</a> -->
+    <button class="addComment col-md-3 col-lg-3 col-sm-3" name="addComment" ng-click="clicked = !clicked">Add Comment</button>
 
+
+<div class="FeedcommentCtrl" ng-controller="FeedcommentCtrl as feedComments">
+<div class="row">
+    <!-- comments -->
+    <ul class="comments nav  col-md-11 col-lg-11 col-sm-11 col-lg-offset-1" ng-repeat="feedComment in awesomeFeedComments | filter : {bet: bet._id} : true">
+      <li><h5>{{feedComment.comment}}<button type="button" class="close" ng-click="deleteFeedComment(feedComment)">&times;</button></h5></li>
+    </ul>
+  </div>
+
+<div class="row">
     <!-- comment form -->
-    <div class="FeedcommentCtrl" ng-controller="FeedcommentCtrl as feedComments">
-    <div class="commentForm col-md-6 col-lg-6 col-sm-6">
-      <button name="addComment" ng-click="clicked = !clicked">Add Comment</button>
-      <form class="thing-form" ng-show="clicked">
-        <label>Syncs in realtime across clients</label>
-        <p class="input-group">
-          <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newFeedComment">
-          <span class="input-group-btn">
-            <button type="submit" class="btn btn-primary" rel="{{bet._id}}" ng-click="addFeedComment(newFeedComment, bet._id)">Add New</button>
-          </span>
-        </p>
-
-        <!-- comments -->
-        <ul class="nav nav-tabs nav-stacked col-md-6 col-lg-6 col-sm-6" ng-repeat="feedComment in awesomeFeedComments | filter : {bet: bet._id} : true">
-          <li><a href="#">{{feedComment.comment}}<button type="button" class="close" ng-click="deleteFeedComment(feedComment)">&times;</button></a></li>
-        </ul>
-      </form>
-
-    </div>
+  <div class="commentForm col-md-12 col-lg-12 col-sm-12">
+    <!-- <button name="addComment" ng-click="clicked = !clicked">Add Comment</button> -->
+    <form class="thing-form" ng-show="clicked">
+      <!-- <p class="input-group"> -->
+        <input type="text" class="commentInput col-md-9 col-lg-9 col-sm-9 col-lg-offset-1" placeholder="what?" ng-model="newFeedComment">
+        <!-- <span class="input-group-btn"> -->
+          <input type="submit" class="commentSubmit" value="Add" rel="{{bet._id}}" ng-click="addFeedComment(newFeedComment, bet._id)">
+        <!-- </span>
+      </p> -->
+    </form>
   </div>
-  </div>
+</div>
+</div>
+</div>
 
+</div>
 </div>

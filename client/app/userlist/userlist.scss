@@ -1,0 +1,49 @@
+.rightSide, .leftSide {
+  margin-top: 5%;
+}
+
+.usersList {
+  cursor: pointer;
+  list-style-type: none;
+
+  .indivUser {
+    border-bottom: 1px dashed firebrick;
+    text-align: center;
+  }
+}
+
+.filterBar, .betBar {
+  border: none;
+  border-bottom: 1px solid black;
+  height: 30px;
+  font-size: 1.5em;
+
+  &:focus {
+    outline: 0;
+    border-bottom: 1px solid black;
+  }
+}
+
+.filterBar {
+  margin-bottom: 5%;
+  color: firebrick;
+}
+
+.submitButton {
+  height: 30px;
+  border: 1px solid black;
+  background: white;
+
+  &:hover {
+    border: 1px solid firebrick;
+    color: firebrick;
+  }
+}
+
+.betBar, .submitButton {
+  margin-top: 5%;
+}
+
+.betBar {
+  color: firebrick;
+}

@@ -34,11 +34,11 @@ angular.module('finalProjectApp')
     $scope.next = function () {
       if ($scope.game_index >= $scope.awesomeGames.length - 1) {
         // $scope.game_index = 0;
-        var el = angular.element('<a class="col-md-7 col-lg-7 col-sm-7 col-sm-offset-4 col-md-offset-4 col-lg-offset-4" href="/userlist"><h1>Find Opponent</h1></a>');
+        var el = angular.element('<a class="findOpponent col-md-12 col-lg-12 col-sm-12" href="/userlist"><h1>Find Opponent</h1></a>');
         // $('.last').append(el);
         $('.last').replaceWith(el);
 
-        var el2 = angular.element('<a class="col-md-7 col-lg-7 col-sm-7 col-sm-offset-4 col-md-offset-4 col-lg-offset-4" href="/feed"><h1>Submit Picks</h1></a>');
+        var el2 = angular.element('<a class="submitPicks col-md-7 col-lg-7 col-sm-7 col-sm-offset-4 col-md-offset-4 col-lg-offset-4" href="/feed"><h1>Submit Picks</h1></a>');
         $('.lastAccept').replaceWith(el2);
 
         $('.BetCtrl').on("click", "a", function(){

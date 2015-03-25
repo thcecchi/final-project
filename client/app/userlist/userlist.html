@@ -1,34 +1,27 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>Who do you want to bet?</h1>
-    <!-- <p class="lead">The 700 Section</p> -->
-  </div>
-</header>
-
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
       <div class="UserlistCtrl" ng-controller="UserlistCtrl as userlist">
         <!-- left side -->
-    <div class="col-lg-6">
+    <div class="leftSide col-lg-6">
         <h3 ng-model="selectedItem" name="template_name" class="col-md-12">I want to bet {{template.template_name}}</h3>
         <h3 class="col-md-12">${{betAmount}}</h3>
 
     </div>
 
     <!-- right side -->
-    <div class="col-lg-6">
-        <input class='col-md-12 col-lg-12 col-sm-12' type="text" placeholder="filter users" ng-model="filterUsers"></input>
+    <div class="rightSide col-lg-6">
+        <input class='filterBar col-md-12 col-lg-12 col-sm-12' type="text" placeholder="filter users" ng-model="filterUsers"></input>
 
-        <ul class='col-md-12 col-lg-12 col-sm-12'>
-          <li ng-repeat="user in users | filter : filterUsers" ng-click="setValue(user)"><h4>{{user.name}}</h4></li>
+        <ul class='usersList col-md-12 col-lg-12 col-sm-12'>
+          <li class="indivUser" ng-repeat="user in users | filter : filterUsers" ng-click="setValue(user)"><h4>{{user.name}}</h4></li>
         </ul>
 
-      <input class='col-md-6 col-lg-6 col-sm-6' type="text" placeholder="bet amount" ng-model="betAmount"></input>
+      <input class='betBar col-md-6 col-lg-6 col-sm-6' type="text" placeholder="bet amount" ng-model="betAmount"></input>
       <form action="/feed">
-        <input class='col-md-6 col-lg-6 col-sm-6' type="submit" value="Send Bet" ng-click='addBet(template.template_name, betAmount)'>
+        <input class='submitButton col-md-6 col-lg-6 col-sm-6' type="submit" value="Send Bet" ng-click='addBet(template.template_name, betAmount)'>
       </form>
     </div>
     </div>
