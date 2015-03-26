@@ -57,6 +57,4 @@ angular.module('finalProjectApp')
 
 
 
-
-
     });

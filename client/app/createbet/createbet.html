@@ -17,6 +17,8 @@
       <div class="row">
         <ul class="nav nav-tabs nav-stacked col-md-12 col-lg-12 col-sm-12" rel="{{game.event_id}}" ng-repeat="game in awesomeGames" ng-class="{'last':$last}">
          <div ng-if="game_index == $index">
+           <progressbar class="col-lg-8 col-lg-offset-2" max="awesomeGames.length" type="success" value="game_index"><span style="color:black; white-space:nowrap;">{{game_index}} / {{awesomeGames.length}}</span></progressbar>
+
           <li class='game col-md-2 col-lg-2 col-sm-2 col-sm-offset-3 col-md-offset-3 col-lg-offset-3' ng-click="makePick(game.away_team.abbreviation, game.event_id);next()"><h1>{{game.away_team.abbreviation}}</h1></li>
           <li class='game col-md-2 col-lg-2 col-sm-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2' ng-click="makePick(game.home_team.abbreviation, game.event_id);next()"><h1>{{game.home_team.abbreviation}}</h1></li>
 
