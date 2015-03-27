@@ -60,7 +60,7 @@ function handleError(res, err) {
 
 var https = require('https');
 var fs = require('fs');
-// var moment = require('moment-timezone');
+var moment = require('moment-timezone');
 var sprintf = require('sprintf').sprintf;
 var zlib = require('zlib');
 
@@ -87,8 +87,8 @@ exports.index = function(request, response) {
   var format = 'json';
   var params = {
     'sport': 'nba',
-    // 'date': moment('YYYYMMDD')
-    'date': 20150325
+    'date': moment('YYYYMMDD')
+    // 'date': 20150325
   };
 
   var url;
