@@ -60,7 +60,7 @@ function handleError(res, err) {
 
 var https = require('https');
 var fs = require('fs');
-var moment = require('moment-timezone');
+// var moment = require('moment-timezone');
 var sprintf = require('sprintf').sprintf;
 var zlib = require('zlib');
 
