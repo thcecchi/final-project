@@ -40,7 +40,7 @@ angular.module('finalProjectApp')
 
     $scope.checkUser1Picks = function() {
       // check to see if the games are over
-          if ($scope.awesomeGames[0].event_status == "scheduled") {
+          if ($scope.awesomeGames[0].event_status == "completed") {
             console.log("checking User1Picks!")
 
       // iterate through each bet object
@@ -82,7 +82,6 @@ angular.module('finalProjectApp')
               user1Total = bets.user1record.reduce(function(a, b) {
                 return a + b;
               });
-              user1Total = 0
             }
             else {
               user1Total = 0
@@ -101,7 +100,7 @@ angular.module('finalProjectApp')
 
           $scope.checkUser2Picks = function() {
               // check to see if the games are over
-            if ($scope.awesomeGames[0].event_status == "scheduled") {
+            if ($scope.awesomeGames[0].event_status == "completed") {
               console.log("checking User2Picks!")
               // iterate through each bet object
                     $scope.awesomeBets.forEach(function(bets) {

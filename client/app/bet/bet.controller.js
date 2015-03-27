@@ -18,6 +18,8 @@ angular.module('finalProjectApp')
     $scope.acceptedBets = []
     $scope.completedBets = []
     $scope.pendingBets = []
+    $scope.tiedBets = []
+
 
 
 
@@ -31,21 +33,21 @@ angular.module('finalProjectApp')
           console.log($scope.todaysBets)
         }
 
-        else if (bets.hasOwnProperty('winner') == true) {
+        else if (moment().format('MM-DD-YYYY') === bets.date && bets.betStatus === 'accepted' && bets.hasOwnProperty('winner') == false) {
+          $scope.acceptedBets.push(bets)
+          console.log($scope.acceptedBets)
+        }
+
+        else if (bets.hasOwnProperty('winner') == true && bets.winner != 'tie') {
           angular.element('.challengeBet').remove()
           $scope.completedBets.push(bets)
           console.log($scope.completedBets)
         }
 
-        else if (moment().format('MM-DD-YYYY') === bets.date && bets.betStatus === 'accepted') {
-          $scope.acceptedBets.push(bets)
-          console.log($scope.acceptedBets)
+        else if (bets.winner == 'tie') {
+          $scope.tiedBets.push(bets)
+          console.log($scope.tiedBets)
         }
-
-        // else if (moment().format('MM-DD-YYYY') === bets.date && bets.betStatus == 'pending') {
-        //   $scope.pendingBets.push(bets)
-        //   console.log($scope.pendingBets)
-        // }
 
       })
     })
@@ -116,6 +118,19 @@ angular.module('finalProjectApp')
           user2Total: total2,
           winner: user2,
           loser: user1,
+          user1record: record1,
+          user2record: record2,
+        }).success(function (data) {
+          console.log(data);
+        })
+      }
+
+      else if (total2 == total1) {
+        $http.put('/api/bets/' + id, {
+          user1Total: total1,
+          user2Total: total2,
+          winner: 'tie',
+          loser: 'tie',
           user1record: record1,
           user2record: record2,
         }).success(function (data) {

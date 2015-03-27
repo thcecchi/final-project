@@ -33,3 +33,12 @@
     color: $red;
   }
 }
+
+.gameComments {
+  margin-top: 5%;
+
+  li {
+  font-size: 1.75em;
+  border-bottom: 1px dashed black;
+  }
+}

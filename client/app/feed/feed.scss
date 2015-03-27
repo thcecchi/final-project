@@ -82,6 +82,7 @@ $red: #D0103A;
 
 .pendingBets, .acceptedBets, .challengeBets {
   background: ghostwhite;
+  cursor: default;
 }
 
 .pendingBets {
@@ -102,6 +103,11 @@ $red: #D0103A;
 
 .challengeTab {
   color: red;
+}
+
+.fa-close {
+  margin-left: 3%;
+  cursor: pointer;
 }
 
 // comments
@@ -156,11 +162,14 @@ $red: #D0103A;
 .logo {
   color: $red;
   margin-bottom: 1%;
+  padding-bottom: 3px;
 
   &:hover {
     text-decoration: none;
     border-bottom: 3px dashed $blue;
     color: $red;
+    padding-bottom: 0px;
+
   }
 }
 

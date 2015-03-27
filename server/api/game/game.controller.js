@@ -87,7 +87,8 @@ exports.index = function(request, response) {
   var format = 'json';
   var params = {
     'sport': 'nba',
-    'date': moment('YYYYMMDD')
+    // 'date': moment('YYYYMMDD')
+    'date': 20150325
   };
 
   var url;
