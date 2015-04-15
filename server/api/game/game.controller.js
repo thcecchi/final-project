@@ -65,7 +65,7 @@ var sprintf = require('sprintf').sprintf;
 var zlib = require('zlib');
 
 // Replace with your access token
-var ACCESS_TOKEN = '62cf8c2d-1152-4d5e-9c09-669dfc193db6';
+var ACCESS_TOKEN = 'b937d731-b845-46d8-af99-79aa6a09a718';
 
 // Replace with your bot name and email/website to contact if there is a problem
 // e.g., "mybot/0.1 (https://erikberg.com/)"
