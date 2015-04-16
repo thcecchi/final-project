@@ -20,7 +20,6 @@ function onConnect(socket) {
   // Insert sockets below
   require('../api/feedcomment/feedcomment.socket').register(socket);
   require('../api/bet/bet.socket').register(socket);
-  require('../api/boxscore/boxscore.socket').register(socket);
   require('../api/game/game.socket').register(socket);
   require('../api/thing/thing.socket').register(socket);
 }

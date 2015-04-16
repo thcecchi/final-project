@@ -61,7 +61,6 @@ function handleError(res, err) {
 var https = require('https');
 var fs = require('fs');
 var moment = require('moment-timezone');
-var sprintf = require('sprintf').sprintf;
 var zlib = require('zlib');
 
 // Replace with your access token
@@ -180,21 +179,10 @@ exports.printResults = function(content) {
   var time;
 
   date = moment.tz(events.events_date, TIME_ZONE).format('dddd, MMMM D, YYYY');
-  // process.stdout.write(sprintf("Events on %s\n\n", date));
-  // process.stdout.write(sprintf("%-35s %5s %34s\n", 'Time', 'Event', 'Status'));
+
   events.event.forEach(function (event) {
     time = moment.tz(event.start_date_time, TIME_ZONE).format('h:mm A z');
-  //   process.stdout.write(sprintf("%12s %24s vs. %-24s %9s\n",
-  //                                time,
-  //                                event.away_team.full_name,
-  //                                event.home_team.full_name,
-  //                                event.event_status));
-  //
-  // console.log('%s\n\n', date)
-  // console.log(moment())
-  // console.log(event.away_team.full_name, event.home_team.full_name)
-  // console.log(event.away_points_scored, event.home_points_scored)
-
+  
   });
 
   return events
