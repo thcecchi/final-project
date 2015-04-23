@@ -34,10 +34,10 @@
         </div>
       <div class="row">
         <div class="btnContainer col-sm-12 col-md-12">
-          <button class="loginBtn btn btn-inverse btn-lg btn-login col-sm-12 col-md-12" type="submit">
+          <button id='stackedBtn' class="loginBtn btn btn-inverse btn-lg btn-login col-sm-12 col-md-12 col-xs-12" type="submit">
             <h5>Login</h5>
           </button>
-          <a class="loginBtn btn btn-default btn-lg btn-register col-sm-12 col-md-12" href="/signup">
+          <a id='stackedBtn' class="loginBtn btn btn-default btn-lg btn-register col-sm-12 col-md-12 col-xs-12" href="/signup">
             <h5>Register</h5>
           </a>
         </div>
@@ -45,12 +45,12 @@
         <hr>
       <div class="row">
         <div class="btnContainer col-sm-12 col-md-12">
-          <a class="social loginBtn btn btn-google-plus" href="" ng-click="loginOauth('google')">
+          <a id="smlSocialBtn" class="social loginBtn btn btn-google-plus" href="" ng-click="loginOauth('google')">
             <i class="fa fa-google-plus"></i> Connect with Google+
           </a>
         </div>
         <div class="btnContainer col-sm-12 col-md-12">
-          <a class="social loginBtn btn btn-twitter" href="" ng-click="loginOauth('twitter')">
+          <a id="smlSocialBtn" class="social loginBtn btn btn-twitter" href="" ng-click="loginOauth('twitter')">
             <i class="fa fa-twitter "></i> Connect with Twitter
           </a>
         </div>

@@ -80,3 +80,16 @@ input:focus {
 .btnContainer {
   margin-left: 28%;
 }
+
+@media screen and (max-width: 768px) {
+  #stackedBtn {
+    width: 50%;
+    margin-bottom: 2%;
+  }
+
+  #smlSocialBtn {
+    width: 57%;
+    margin-left: -3%;
+    font-size: .75em;
+  }
+}
