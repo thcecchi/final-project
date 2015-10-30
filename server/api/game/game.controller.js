@@ -65,7 +65,8 @@ var zlib = require('zlib');
 
 // Replace with your access token
 var ACCESS_TOKEN = '7dddcbf5-cff6-4053-ae77-255a9630694a';
-//old access token b937d731-b845-46d8-af99-79aa6a09a718
+// old access token b937d731-b845-46d8-af99-79aa6a09a718
+
 
 // Replace with your bot name and email/website to contact if there is a problem
 // e.g., "mybot/0.1 (https://erikberg.com/)"
