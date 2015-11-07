@@ -6,13 +6,13 @@ angular.module('finalProjectApp')
 
     // check picks at 3am daily
 
-    var now = new Date();
-    var millisTill3 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 3, 0, 0, 0) - now;
-    if (millisTill3 < 0) {
-        millisTill3 += 86400000; // it's after 3am, check again at 3am tomorrow.
-    }
-    setTimeout($scope.checkUser1Picks, millisTill3);
-    setTimeout($scope.checkUser2Picks, millisTill3);
+    // var now = new Date();
+    // var millisTill3 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 3, 0, 0, 0) - now;
+    // if (millisTill3 < 0) {
+    //     millisTill3 += 86400000; // it's after 3am, check again at 3am tomorrow.
+    // }
+    // setTimeout($scope.checkUser1Picks, millisTill3);
+    // setTimeout($scope.checkUser2Picks, millisTill3);
 
     var user1Total = 0
     var user2Total = 0

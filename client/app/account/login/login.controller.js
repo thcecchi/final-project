@@ -5,8 +5,14 @@ angular.module('finalProjectApp')
     $scope.user = {};
     $scope.errors = {};
 
+    var user1Total = 0
+    var user2Total = 0
+
     $scope.login = function(form) {
       $scope.submitted = true;
+
+      $scope.checkUser1Picks;
+      $scope.checkUser2Picks;
 
       if(form.$valid) {
         Auth.login({
