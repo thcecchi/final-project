@@ -4,16 +4,6 @@ angular.module('finalProjectApp')
   .controller('PickCtrl', function ($scope, $http, Auth, User, socket) {
     $scope.message = 'Hello';
 
-    // check picks at 3am daily
-
-    // var now = new Date();
-    // var millisTill3 = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 3, 0, 0, 0) - now;
-    // if (millisTill3 < 0) {
-    //     millisTill3 += 86400000; // it's after 3am, check again at 3am tomorrow.
-    // }
-    // setTimeout($scope.checkUser1Picks, millisTill3);
-    // setTimeout($scope.checkUser2Picks, millisTill3);
-
     var user1Total = 0
     var user2Total = 0
 
@@ -40,7 +30,7 @@ angular.module('finalProjectApp')
 
     $scope.checkUser1Picks = function() {
       // check to see if the games are over
-          if ($scope.awesomeGames[0].event_status == "completed") {
+          if ($scope.pastGames[0].event_status == "completed") {
             console.log("checking User1Picks!")
 
       // iterate through each bet object
@@ -52,7 +42,7 @@ angular.module('finalProjectApp')
             // check user1picks
               bets.user1picks.forEach(function(pks) {
 
-              $scope.awesomeGames.forEach(function(games) {
+              $scope.pastGames.forEach(function(games) {
                 // changing the values of the home and away score for test purposes
                 games.home_points_scored = 10
                 games.away_points_scored = 5
@@ -100,7 +90,7 @@ angular.module('finalProjectApp')
 
           $scope.checkUser2Picks = function() {
               // check to see if the games are over
-            if ($scope.awesomeGames[0].event_status == "completed") {
+            if ($scope.pastGames[0].event_status == "completed") {
               console.log("checking User2Picks!")
               // iterate through each bet object
                     $scope.awesomeBets.forEach(function(bets) {
@@ -110,7 +100,7 @@ angular.module('finalProjectApp')
                     // check user2picks
                       bets.user2picks.forEach(function(pks) {
 
-                      $scope.awesomeGames.forEach(function(games) {
+                      $scope.pastGames.forEach(function(games) {
                         // changing the values of the home and away score for test purposes
                         games.home_points_scored = 10
                         games.away_points_scored = 5

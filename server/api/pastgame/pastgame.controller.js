@@ -1,61 +1,61 @@
 'use strict';
 
 var _ = require('lodash');
-var Game = require('./game.model');
+var Pastgame = require('./pastgame.model');
 
-// Get list of games
-exports.list = function(req, res) {
-  Game.find(function (err, games) {
+// Get list of pastgames
+exports.index = function(req, res) {
+  Pastgame.find(function (err, pastgames) {
     if(err) { return handleError(res, err); }
-    return res.json(200, games);
+    return res.status(200).json(pastgames);
   });
 };
 
-// Get a single game
+// Get a single pastgame
 exports.show = function(req, res) {
-  Game.findById(req.params.id, function (err, game) {
+  Pastgame.findById(req.params.id, function (err, pastgame) {
     if(err) { return handleError(res, err); }
-    if(!game) { return res.send(404); }
-    return res.json(game);
+    if(!pastgame) { return res.status(404).send('Not Found'); }
+    return res.json(pastgame);
   });
 };
 
-// Creates a new game in the DB.
+// Creates a new pastgame in the DB.
 exports.create = function(req, res) {
-  Game.create(req.body, function(err, game) {
+  Pastgame.create(req.body, function(err, pastgame) {
     if(err) { return handleError(res, err); }
-    return res.json(201, game);
+    return res.status(201).json(pastgame);
   });
 };
 
-// Updates an existing game in the DB.
+// Updates an existing pastgame in the DB.
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
-  Game.findById(req.params.id, function (err, game) {
+  Pastgame.findById(req.params.id, function (err, pastgame) {
     if (err) { return handleError(res, err); }
-    if(!game) { return res.send(404); }
-    var updated = _.merge(game, req.body);
+    if(!pastgame) { return res.status(404).send('Not Found'); }
+    var updated = _.merge(pastgame, req.body);
     updated.save(function (err) {
       if (err) { return handleError(res, err); }
-      return res.json(200, game);
+      return res.status(200).json(pastgame);
     });
   });
 };
 
-// Deletes a game from the DB.
+// Deletes a pastgame from the DB.
 exports.destroy = function(req, res) {
-  Game.findById(req.params.id, function (err, game) {
+  Pastgame.findById(req.params.id, function (err, pastgame) {
     if(err) { return handleError(res, err); }
-    if(!game) { return res.send(404); }
-    game.remove(function(err) {
+    if(!pastgame) { return res.status(404).send('Not Found'); }
+    pastgame.remove(function(err) {
       if(err) { return handleError(res, err); }
-      return res.send(204);
+      return res.status(204).send('No Content');
     });
   });
 };
 
 function handleError(res, err) {
-  return res.send(500, err);
+  return res.status(500).send(err);
 }
 
 var https = require('https');
@@ -88,8 +88,8 @@ exports.index = function(request, response) {
   var format = 'json';
   var params = {
     'sport': 'nba',
-    'date': moment('YYYYMMDD')
-    // 'date': 20150325
+    // 'date': moment('YYYYMMDD')
+    'date': moment().subtract(1, 'day').format('YYYYMMDD')
   };
 
   var url;

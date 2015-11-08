@@ -3,7 +3,7 @@
 }
 
 .leftSide h3 {
-  
+
 }
 
 .usersList {
@@ -34,9 +34,11 @@
 }
 
 .submitButton {
+  margin-left: 3%;
   height: 30px;
-  border: 1px solid black;
+  border: 1px solid #fff;
   background: white;
+  font-size: 1.3em;
 
   &:hover {
     border: 1px solid $red;

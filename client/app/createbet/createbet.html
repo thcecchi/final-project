@@ -30,9 +30,9 @@
             <button class="addComment col-md-12 col-lg-6 col-sm-12 col-lg-offset-3" name="addComment" ng-click="clicked = !clicked">Add Comment</button>
             <form class="thing-form col-md-12 col-lg-12 col-sm-12" ng-show="clicked">
               <!-- <p class="input-group col-md-12 col-lg-12 col-sm-12"> -->
-                <input type="text" class="commentInput col-md-8 col-lg-8 col-sm-8 col-lg-offset-1" placeholder="What" ng-model="newThing">
+                <input type="text" class="commentInput col-md-7 col-lg-7 col-sm-7 col-lg-offset-1" placeholder="What" ng-model="newThing">
                 <!-- <span class="input-group-btn"> -->
-                  <button type="submit" class="commentSubmit" rel="{{game.event_id}}" ng-click="addThing(newThing, game.event_id)">Add!</button>
+                  <button type="submit" class="commentSubmit col-md-2" rel="{{game.event_id}}" ng-click="addThing(newThing, game.event_id)">Add!</button>
                 <!-- </span> -->
               <!-- </p> -->
             </form>

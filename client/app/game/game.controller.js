@@ -6,6 +6,14 @@ angular.module('finalProjectApp')
   // });
     .controller('GameCtrl', function ($scope, $http, socket) {
       $scope.awesomeGames = [];
+      $scope.pastGames = []
+
+      $http.get('/api/pastgames').success(function(pastGames) {
+        console.log('this')
+        $scope.pastGames = pastGames;
+        console.log(pastGames)
+        socket.syncUpdates('game', $scope.pastGames);
+      });
 
       $http.get('/api/games').success(function(awesomeGames) {
         console.log('this')
