@@ -19,9 +19,9 @@
           <li class="indivUser" ng-repeat="user in users | filter : filterUsers" ng-click="setValue(user)"><h4>{{user.name}}</h4></li>
         </ul>
 
-      <input class='betBar col-md-6 col-lg-6 col-sm-6' type="text" placeholder="bet amount" ng-model="betAmount"></input>
+      <input class='betBar col-md-12 col-lg-12 col-sm-12' type="text" placeholder="bet amount" ng-model="betAmount"></input>
       <form action="/feed">
-        <input class='submitButton col-md-6 col-lg-6 col-sm-6' type="submit" value="Send Bet" ng-click='addBet(template.template_name, betAmount)'>
+        <input class='submitButton col-md-12 col-lg-12 col-sm-12' type="submit" value="Send Bet" ng-click='addBet(template.template_name, betAmount)'>
       </form>
     </div>
     </div>
