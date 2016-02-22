@@ -64,9 +64,7 @@ var moment = require('moment-timezone');
 var zlib = require('zlib');
 
 // Replace with your access token
-var ACCESS_TOKEN = '7dddcbf5-cff6-4053-ae77-255a9630694a';
-// old access token b937d731-b845-46d8-af99-79aa6a09a718
-
+var ACCESS_TOKEN = '5819ceb0-57c0-4a32-a9a1-a1b84f412d77';
 
 // Replace with your bot name and email/website to contact if there is a problem
 // e.g., "mybot/0.1 (https://erikberg.com/)"
